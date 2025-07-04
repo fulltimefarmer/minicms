@@ -144,7 +144,7 @@
 					<user>dbuser</user>
 					<password>123qwe</password>
 					<locations>
-						<location>filesystem:bootloader/src/main/resources/db/migration</location>
+						<location>filesystem:scripts/db/migration</location>
 					</locations>
 					<baselineOnMigrate>true</baselineOnMigrate>
 					<baselineVersion>0</baselineVersion>
