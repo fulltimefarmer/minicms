@@ -7,6 +7,6 @@ infra-start:
 
 infra-cleanup:
 	sudo docker compose -f docker-compose.yml down
-	rm -rf ./docker/postgres/data
+	sudo rm -rf ./docker/postgres/data
 
 infra-restart: infra-cleanup infra-start
