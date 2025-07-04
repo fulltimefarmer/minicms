@@ -1,5 +1,3 @@
-version: "3.4"
-
 services:
 
   postgres:
@@ -9,15 +7,11 @@ services:
     environment:
       POSTGRES_USER: dbuser
       POSTGRES_PASSWORD: 123qwe
-      POSTGRES_DB: minicommerce
+      POSTGRES_DB: minicms
     volumes:
       - ./docker/postgres/data:/var/lib/postgresql/data
-    command: [
-      '--character-set-server=utf8mb4',
-      '--collation-server=utf8mb4_unicode_ci'
-    ]
 
   redis:
     image: redis:latest
     ports:
-      - "6320:6379"
+      - "6379:6379"

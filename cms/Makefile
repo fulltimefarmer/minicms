@@ -2,8 +2,8 @@
 
 infra-start:
 	docker compose -f docker-compose.yml up -d
-	./scripts/bin/waitForMySQL.sh
-	./mvnw -pl . flyway:migrate
+	./scripts/bin/waitForDB.sh
+	./mvnw -pl . flyway:migration
 
 infra-cleanup:
 	docker compose -f docker-compose.yml down
