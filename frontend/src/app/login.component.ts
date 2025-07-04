@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PermissionService } from './permission.service';
@@ -50,7 +50,8 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private permissionService: PermissionService
+    private permissionService: PermissionService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   onSubmit() {
@@ -58,7 +59,9 @@ export class LoginComponent {
     if (user) {
       this.loginError = false;
       // 存储当前用户信息（在实际项目中应该使用更安全的方式）
-      localStorage.setItem('currentUser', JSON.stringify(user));
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
       // 跳转到权限管理页面
       this.router.navigate(['/permission-management']);
     } else {
