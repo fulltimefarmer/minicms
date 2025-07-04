@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { PermissionService } from './permission.service';
 
 @Component({
   selector: 'app-login',
@@ -46,11 +48,19 @@ export class LoginComponent {
   password = '';
   loginError = false;
 
+  constructor(
+    private router: Router,
+    private permissionService: PermissionService
+  ) {}
+
   onSubmit() {
-    // 简单演示，用户名 admin 密码 123456
-    if (this.username === 'admin' && this.password === '123456') {
+    const user = this.permissionService.validateLogin(this.username, this.password);
+    if (user) {
       this.loginError = false;
-      alert('登录成功！');
+      // 存储当前用户信息（在实际项目中应该使用更安全的方式）
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      // 跳转到权限管理页面
+      this.router.navigate(['/permission-management']);
     } else {
       this.loginError = true;
     }
