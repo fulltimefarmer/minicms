@@ -6,9 +6,9 @@ spring:
   
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/cms
-    username: cms_user
-    password: cms_password
+    url: jdbc:postgresql://localhost:5432/minicms
+    username: dbuser
+    password: 123qwe
     hikari:
       minimum-idle: 5
       maximum-pool-size: 20
