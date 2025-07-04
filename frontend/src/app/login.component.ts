@@ -1,8 +1,8 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { PermissionService } from './permission.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService, LoginRequest } from './auth.service';
 
 @Component({
   selector: 'app-login',
@@ -50,22 +50,40 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private permissionService: PermissionService,
+    private route: ActivatedRoute,
+    private authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) {
+    // 如果已经登录，重定向到首页
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   onSubmit() {
-    const user = this.permissionService.validateLogin(this.username, this.password);
-    if (user) {
-      this.loginError = false;
-      // 存储当前用户信息（在实际项目中应该使用更安全的方式）
-      if (isPlatformBrowser(this.platformId)) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-      }
-      // 跳转到权限管理页面
-      this.router.navigate(['/permission-management']);
-    } else {
+    if (!this.username || !this.password) {
       this.loginError = true;
+      return;
     }
+
+    const loginRequest: LoginRequest = {
+      username: this.username,
+      password: this.password
+    };
+
+    this.authService.login(loginRequest).subscribe({
+      next: (response) => {
+        this.loginError = false;
+        console.log('登录成功:', response);
+        
+        // 获取返回URL，如果没有则跳转到默认页面
+        const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+        this.router.navigate([returnUrl]);
+      },
+      error: (error) => {
+        console.error('登录失败:', error);
+        this.loginError = true;
+      }
+    });
   }
 } 
