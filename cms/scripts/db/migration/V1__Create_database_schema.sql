@@ -1,3 +1,6 @@
+-- 数据库架构初始化脚本
+-- 创建所有必要的表结构和索引
+
 -- 审计日志表
 CREATE TABLE audit_logs (
     id BIGSERIAL PRIMARY KEY,
@@ -74,7 +77,7 @@ CREATE TABLE role_permissions (
     UNIQUE(role_id, permission_id)
 );
 
--- 用户表
+-- 用户表（合并了两个版本的字段）
 CREATE TABLE users (
     id BIGSERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -82,6 +85,7 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
+    nickname VARCHAR(50),
     phone VARCHAR(20),
     avatar VARCHAR(500),
     enabled BOOLEAN DEFAULT TRUE,
@@ -147,7 +151,14 @@ CREATE INDEX idx_audit_logs_action ON audit_logs(action);
 CREATE INDEX idx_audit_logs_created_at ON audit_logs(created_at);
 CREATE INDEX idx_users_username ON users(username);
 CREATE INDEX idx_users_email ON users(email);
-CREATE INDEX idx_assets_asset_number ON assets(asset_number);
-CREATE INDEX idx_assets_status ON assets(status);
+CREATE INDEX idx_user_roles_user_id ON user_roles(user_id);
+CREATE INDEX idx_user_roles_role_id ON user_roles(role_id);
+CREATE INDEX idx_role_permissions_role_id ON role_permissions(role_id);
+CREATE INDEX idx_role_permissions_permission_id ON role_permissions(permission_id);
 CREATE INDEX idx_permissions_parent_id ON permissions(parent_id);
 CREATE INDEX idx_permissions_type ON permissions(type);
+CREATE INDEX idx_permissions_code ON permissions(code);
+CREATE INDEX idx_assets_asset_number ON assets(asset_number);
+CREATE INDEX idx_assets_status ON assets(status);
+CREATE INDEX idx_assets_type ON assets(type);
+CREATE INDEX idx_assets_department ON assets(department);
