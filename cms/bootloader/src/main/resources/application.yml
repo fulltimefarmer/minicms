@@ -7,6 +7,7 @@ spring:
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration
   
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -22,7 +23,7 @@ spring:
   
   flyway:
     enabled: true
-    locations: filesystem:scripts/db/migration
+    locations: filesystem:../scripts/db/migration
     baseline-on-migrate: true
     baseline-version: 0
     
