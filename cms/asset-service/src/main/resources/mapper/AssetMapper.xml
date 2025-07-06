@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.max.cms.asset.repository.AssetRepository">
+    
+    <!-- 根据用户ID查询资产列表 -->
+    <select id="selectByUserId" parameterType="Long" resultType="org.max.cms.asset.entity.Asset">
+        SELECT id, name, asset_number, type, category, description, brand, model, serial_number,
+               purchase_price, purchase_date, supplier, location, department, responsible_person,
+               status, warranty_expiry, notes, user_id,
+               created_at, updated_at, created_by, updated_by, deleted
+        FROM assets
+        WHERE user_id = #{userId} AND deleted = false
+        ORDER BY created_at DESC
+    </select>
+    
+    <!-- 查询未分配的资产列表 -->
+    <select id="selectUnassignedAssets" resultType="org.max.cms.asset.entity.Asset">
+        SELECT id, name, asset_number, type, category, description, brand, model, serial_number,
+               purchase_price, purchase_date, supplier, location, department, responsible_person,
+               status, warranty_expiry, notes, user_id,
+               created_at, updated_at, created_by, updated_by, deleted
+        FROM assets
+        WHERE user_id IS NULL AND deleted = false
+        ORDER BY created_at DESC
+    </select>
+    
+    <!-- 将资产绑定到用户 -->
+    <update id="bindAssetToUser">
+        UPDATE assets
+        SET user_id = #{userId},
+            updated_at = NOW(),
+            updated_by = 'system'
+        WHERE id = #{assetId} AND deleted = false
+    </update>
+    
+    <!-- 解绑资产 -->
+    <update id="unbindAsset">
+        UPDATE assets
+        SET user_id = NULL,
+            updated_at = NOW(),
+            updated_by = 'system'
+        WHERE id = #{assetId} AND deleted = false
+    </update>
+    
+</mapper>
