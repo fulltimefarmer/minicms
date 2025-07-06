@@ -31,4 +31,8 @@ public class User extends BaseEntity {
     private String lastLoginIp;
     private Integer failedLoginAttempts = 0;
     private LocalDateTime lockedUntil;
+    
+    // 部门关联
+    private Long departmentId;
+    private String departmentName; // 非数据库字段
 }
