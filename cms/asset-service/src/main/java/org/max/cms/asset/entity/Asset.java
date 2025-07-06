@@ -34,4 +34,5 @@ public class Asset extends BaseEntity {
     private String status; // ACTIVE, MAINTENANCE, DEPRECATED, DISPOSED
     private LocalDate warrantyExpiry;
     private String notes;
+    private Long userId; // 绑定的用户ID
 }
