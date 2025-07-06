@@ -31,6 +31,7 @@
 		<lombok.version>1.18.30</lombok.version>
 		<commons-lang3.version>3.14.0</commons-lang3.version>
 		<mybatis-plus-jsqlparser.version>3.5.12</mybatis-plus-jsqlparser.version>
+		<camunda.version>7.22.0</camunda.version>
 	</properties>
 	
 	<modules>
@@ -38,6 +39,7 @@
 		<module>auth-service</module>
 		<module>user-service</module>
 		<module>asset-service</module>
+		<module>leave-service</module>
 		<module>bootloader</module>
 	</modules>
 	
@@ -62,6 +64,11 @@
 			<dependency>
 				<groupId>org.max</groupId>
 				<artifactId>asset-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.max</groupId>
+				<artifactId>leave-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			
@@ -90,6 +97,18 @@
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-database-postgresql</artifactId>
 				<version>${flyway.version}</version>
+			</dependency>
+			
+			<!-- Camunda Workflow -->
+			<dependency>
+				<groupId>org.camunda.bpm.springboot</groupId>
+				<artifactId>camunda-bpm-spring-boot-starter</artifactId>
+				<version>${camunda.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.camunda.bpm.springboot</groupId>
+				<artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
+				<version>${camunda.version}</version>
 			</dependency>
 			
 			<!-- Documentation -->
