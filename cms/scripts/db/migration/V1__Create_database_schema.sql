@@ -1,31 +1,6 @@
 -- 数据库架构初始化脚本
 -- 创建所有必要的表结构和索引
 
--- 审计日志表
-CREATE TABLE audit_logs (
-    id BIGSERIAL PRIMARY KEY,
-    user_id VARCHAR(255),
-    username VARCHAR(255),
-    action VARCHAR(255) NOT NULL,
-    resource VARCHAR(255),
-    resource_id VARCHAR(255),
-    method VARCHAR(10),
-    request_path VARCHAR(500),
-    request_params TEXT,
-    request_body TEXT,
-    response_body TEXT,
-    status_code INTEGER,
-    ip_address VARCHAR(45),
-    user_agent VARCHAR(500),
-    duration BIGINT,
-    error_message TEXT,
-    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    created_by VARCHAR(255) DEFAULT 'system',
-    updated_by VARCHAR(255) DEFAULT 'system',
-    deleted BOOLEAN DEFAULT FALSE
-);
-
 -- 角色表
 CREATE TABLE roles (
     id BIGSERIAL PRIMARY KEY,
@@ -146,9 +121,6 @@ CREATE TABLE assets (
 );
 
 -- 创建索引
-CREATE INDEX idx_audit_logs_user_id ON audit_logs(user_id);
-CREATE INDEX idx_audit_logs_action ON audit_logs(action);
-CREATE INDEX idx_audit_logs_created_at ON audit_logs(created_at);
 CREATE INDEX idx_users_username ON users(username);
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_user_roles_user_id ON user_roles(user_id);
