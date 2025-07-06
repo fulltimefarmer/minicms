@@ -24,12 +24,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
 		<!-- Version Management -->
-		<mybatis-plus.version>3.5.5</mybatis-plus.version>
+		<mybatis-plus.version>3.5.12</mybatis-plus.version>
 		<flyway.version>10.17.0</flyway.version>
 		<postgresql.version>42.7.3</postgresql.version>
 		<swagger.version>2.2.0</swagger.version>
 		<lombok.version>1.18.30</lombok.version>
 		<commons-lang3.version>3.14.0</commons-lang3.version>
+		<mybatis-plus-jsqlparser.version>3.5.12</mybatis-plus-jsqlparser.version>
 	</properties>
 	
 	<modules>
@@ -72,8 +73,13 @@
 			</dependency>
 			<dependency>
 				<groupId>com.baomidou</groupId>
-				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<artifactId>mybatis-plus-spring-boot3-starter</artifactId>
 				<version>${mybatis-plus.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-jsqlparser</artifactId>
+				<version>${mybatis-plus-jsqlparser.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.flywaydb</groupId>
@@ -127,12 +133,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
+					<skip>true</skip>
 				</configuration>
 			</plugin>
 			<plugin>
