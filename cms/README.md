@@ -876,7 +876,7 @@ cms/
 │   │   ├── application.yml           # 主配置文件
 │   │   └── db/migration/             # Flyway迁移脚本
 │   │       ├── V1__Create_base_tables.sql
-│   │       └── V2__Insert_initial_data.sql
+│   │       └── V000002__initial_baseline_data.sql
 │   └── pom.xml
 ├── pom.xml                           # 父POM配置
 ├── README.md                         # 项目文档

@@ -43,7 +43,7 @@
 ### 数据库迁移
 - ✅ Flyway配置
 - ✅ 基础表结构创建脚本 `V1__Create_base_tables.sql`
-- ✅ 默认数据插入脚本 `V2__Insert_initial_data.sql`
+- ✅ 默认数据插入脚本 `V000002__initial_baseline_data.sql`
 - ✅ 完整的RBAC表结构
 - ✅ 预置用户和权限数据
 

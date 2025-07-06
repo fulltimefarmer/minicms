@@ -1,4 +1,4 @@
--- V2__Add_departments_table.sql
+-- V000003__add_departments_table.sql
 -- 添加部门表和相关字段
 
 -- 创建部门表
