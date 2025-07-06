@@ -23,6 +23,10 @@ import { AuthService, LoginResponse } from './auth.service';
             <h3>用户管理</h3>
             <p>管理系统用户</p>
           </div>
+          <div class="nav-card" (click)="navigateTo('/departments')">
+            <h3>部门管理</h3>
+            <p>管理组织架构</p>
+          </div>
           <div class="nav-card" (click)="navigateTo('/permission-management')">
             <h3>权限管理</h3>
             <p>管理角色和权限</p>

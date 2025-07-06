@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 interface User {
   id: number;
@@ -10,12 +11,22 @@ interface User {
   role: string;
   status: 'active' | 'inactive';
   createdAt: Date;
+  departmentId?: number;
+  departmentName?: string;
+}
+
+interface Department {
+  id: number;
+  name: string;
+  code: string;
+  level: number;
+  children?: Department[];
 }
 
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   template: `
     <div class="user-management">
       <div class="header">
@@ -45,6 +56,12 @@ interface User {
           <option value="active">激活</option>
           <option value="inactive">停用</option>
         </select>
+        <select [(ngModel)]="filterDepartment" (change)="filterUsers()" class="filter-select">
+          <option value="">所有部门</option>
+          <option *ngFor="let dept of flatDepartments" [value]="dept.id">
+            {{ getIndentPrefix(dept.level) }}{{ dept.name }}
+          </option>
+        </select>
       </div>
 
       <!-- 用户表格 -->
@@ -56,6 +73,7 @@ interface User {
               <th>姓名</th>
               <th>邮箱</th>
               <th>电话</th>
+              <th>部门</th>
               <th>角色</th>
               <th>状态</th>
               <th>创建时间</th>
@@ -68,6 +86,12 @@ interface User {
               <td>{{ user.name }}</td>
               <td>{{ user.email }}</td>
               <td>{{ user.phone || '-' }}</td>
+              <td>
+                <span class="department-badge" *ngIf="user.departmentName">
+                  {{ user.departmentName }}
+                </span>
+                <span *ngIf="!user.departmentName">-</span>
+              </td>
               <td>
                 <span class="role-badge" [class]="'role-' + user.role">
                   {{ getRoleDisplayName(user.role) }}
@@ -142,6 +166,21 @@ interface User {
                 [(ngModel)]="currentUser.phone" 
                 class="form-control"
               />
+            </div>
+            
+            <div class="form-group">
+              <label for="departmentId">所属部门</label>
+              <select 
+                id="departmentId" 
+                name="departmentId" 
+                [(ngModel)]="currentUser.departmentId" 
+                class="form-control"
+              >
+                <option value="">请选择部门</option>
+                <option *ngFor="let dept of flatDepartments" [value]="dept.id">
+                  {{ getIndentPrefix(dept.level) }}{{ dept.name }}
+                </option>
+              </select>
             </div>
             
             <div class="form-group">
@@ -276,11 +315,17 @@ interface User {
     }
 
     .role-badge,
-    .status-badge {
+    .status-badge,
+    .department-badge {
       padding: 0.25rem 0.5rem;
       border-radius: 4px;
       font-size: 0.875rem;
       font-weight: 500;
+    }
+
+    .department-badge {
+      background: #e1f5fe;
+      color: #0277bd;
     }
 
     .role-admin { background: #e3f2fd; color: #1976d2; }
@@ -474,7 +519,7 @@ interface User {
     }
   `]
 })
-export class UserManagementComponent {
+export class UserManagementComponent implements OnInit {
   users: User[] = [
     {
       id: 1,
@@ -483,7 +528,9 @@ export class UserManagementComponent {
       phone: '13800138001',
       role: 'admin',
       status: 'active',
-      createdAt: new Date('2023-01-15')
+      createdAt: new Date('2023-01-15'),
+      departmentId: 1,
+      departmentName: '技术部'
     },
     {
       id: 2,
@@ -492,7 +539,9 @@ export class UserManagementComponent {
       phone: '13800138002',
       role: 'user',
       status: 'active',
-      createdAt: new Date('2023-02-20')
+      createdAt: new Date('2023-02-20'),
+      departmentId: 2,
+      departmentName: '前端开发组'
     },
     {
       id: 3,
@@ -517,13 +566,50 @@ export class UserManagementComponent {
   searchTerm = '';
   filterRole = '';
   filterStatus = '';
+  filterDepartment = '';
   
   showModal = false;
   isEditing = false;
   currentUser: Partial<User> = {};
 
+  departments: Department[] = [];
+  flatDepartments: Department[] = [];
+  
+  private apiUrl = 'http://localhost:8080/api/departments';
+
+  constructor(private http: HttpClient) {}
+
   ngOnInit() {
     this.filteredUsers = [...this.users];
+    this.loadDepartments();
+  }
+
+  loadDepartments() {
+    this.http.get<Department[]>(`${this.apiUrl}/tree`).subscribe({
+      next: (data: any) => {
+        this.departments = data;
+        this.flattenDepartments();
+      },
+      error: (error: any) => console.error('加载部门失败:', error)
+    });
+  }
+
+  flattenDepartments() {
+    this.flatDepartments = [];
+    this.flattenRecursive(this.departments, this.flatDepartments);
+  }
+
+  flattenRecursive(departments: Department[], result: Department[]) {
+    for (const dept of departments) {
+      result.push(dept);
+      if (dept.children && dept.children.length > 0) {
+        this.flattenRecursive(dept.children, result);
+      }
+    }
+  }
+
+  getIndentPrefix(level: number): string {
+    return '　'.repeat(level - 1);
   }
 
   filterUsers() {
@@ -534,8 +620,9 @@ export class UserManagementComponent {
       
       const matchesRole = !this.filterRole || user.role === this.filterRole;
       const matchesStatus = !this.filterStatus || user.status === this.filterStatus;
+      const matchesDepartment = !this.filterDepartment || user.departmentId?.toString() === this.filterDepartment;
       
-      return matchesSearch && matchesRole && matchesStatus;
+      return matchesSearch && matchesRole && matchesStatus && matchesDepartment;
     });
   }
 
@@ -560,6 +647,12 @@ export class UserManagementComponent {
   }
 
   saveUser() {
+    // 设置部门名称
+    if (this.currentUser.departmentId) {
+      const department = this.flatDepartments.find(d => d.id === Number(this.currentUser.departmentId));
+      this.currentUser.departmentName = department?.name;
+    }
+    
     if (this.isEditing) {
       const index = this.users.findIndex(u => u.id === this.currentUser.id);
       if (index !== -1) {
@@ -573,7 +666,9 @@ export class UserManagementComponent {
         phone: this.currentUser.phone,
         role: this.currentUser.role!,
         status: this.currentUser.status!,
-        createdAt: new Date()
+        createdAt: new Date(),
+        departmentId: this.currentUser.departmentId ? Number(this.currentUser.departmentId) : undefined,
+        departmentName: this.currentUser.departmentName
       };
       this.users.push(newUser);
     }
