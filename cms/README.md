@@ -288,7 +288,7 @@ psql -h localhost -U cms_user -d cms -c "SELECT count(*) FROM users;"
 # 使用默认管理员账户测试登录
 curl -X POST http://localhost:8080/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"username":"admin","password":"admin123"}'
+  -d '{"username":"admin","password":"1234"}'
 ```
 
 ## 故障排除
@@ -432,9 +432,9 @@ sudo apt install pgadmin4
 
 | 用户名 | 密码 | 角色 | 说明 | 权限范围 |
 |--------|------|------|------|----------|
-| admin | admin123 | SUPER_ADMIN | 超级管理员 | 所有功能权限 |
-| manager | admin123 | ADMIN | 管理员 | 用户管理、资产管理 |
-| user | admin123 | USER | 普通用户 | 基础查看权限 |
+| admin | 1234 | SUPER_ADMIN | 超级管理员 | 所有功能权限 |
+| manager | 1234 | ADMIN | 管理员 | 用户管理、资产管理 |
+| user | 1234 | USER | 普通用户 | 基础查看权限 |
 
 💡 **安全提示**: 生产环境请立即修改默认密码！
 
