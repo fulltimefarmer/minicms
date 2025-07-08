@@ -43,6 +43,7 @@ mybatis-plus:
       logic-delete-field: deleted
       logic-delete-value: 1
       logic-not-delete-value: 0
+  mapper-locations: classpath:mapper/*.xml
 
 # Swagger Configuration
 springdoc:
@@ -64,11 +65,13 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
 
+# Server Configuration
 server:
   port: 8080
   servlet:
     context-path: /api
 
+# Management Endpoints
 management:
   endpoints:
     web:
@@ -77,3 +80,63 @@ management:
   endpoint:
     health:
       show-details: always
+
+# Authentication and Security Configuration
+auth:
+  security:
+    exclude-paths:
+      # 认证相关路径
+      - "/api/auth/login"
+      - "/api/auth/register"
+      
+      # Swagger文档相关路径
+      - "/swagger-ui/**"
+      - "/swagger-ui.html"
+      - "/swagger.html"
+      - "/v3/api-docs/**"
+      - "/swagger-resources/**"
+      - "/webjars/**"
+      
+      # 健康检查相关路径
+      - "/actuator/health"
+      - "/actuator/info"
+      
+      # 静态资源路径
+      - "/static/**"
+      - "/public/**"
+
+# Document Management Configuration (from asset-service)
+document:
+  storage-path: files
+  max-file-size: 10485760  # 10MB
+  allowed-types:
+    - pdf
+    - doc
+    - docx
+    - xls
+    - xlsx
+    - ppt
+    - pptx
+    - txt
+    - jpg
+    - jpeg
+    - png
+    - gif
+    - bmp
+    - zip
+    - rar
+
+# Service-specific configurations
+services:
+  bootloader:
+    port: 8080
+    context-path: /api
+  asset-service:
+    port: 8081
+    context-path: /
+  auth-service:
+    port: 8082
+    context-path: /
+  user-service:
+    port: 8083
+    context-path: /
