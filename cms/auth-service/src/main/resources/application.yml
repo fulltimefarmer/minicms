@@ -1,0 +1,22 @@
+auth:
+  security:
+    exclude-paths:
+      # 认证相关路径
+      - "/api/auth/login"
+      - "/api/auth/register"
+      
+      # Swagger文档相关路径
+      - "/swagger-ui/**"
+      - "/swagger-ui.html"
+      - "/swagger.html"
+      - "/v3/api-docs/**"
+      - "/swagger-resources/**"
+      - "/webjars/**"
+      
+      # 健康检查相关路径
+      - "/actuator/health"
+      - "/actuator/info"
+      
+      # 静态资源路径
+      - "/static/**"
+      - "/public/**"

@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.max.cms.auth.config.SecurityPathsConfig;
 import org.max.cms.auth.util.JwtUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,8 +16,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Slf4j
 @Component
@@ -24,16 +23,7 @@ import java.util.List;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
-    
-    // 不需要JWT认证的路径
-    private final List<String> excludedPaths = Arrays.asList(
-            "/api/auth/login",
-            "/api/auth/register",
-            "/swagger-ui",
-            "/v3/api-docs",
-            "/swagger-resources",
-            "/webjars"
-    );
+    private final SecurityPathsConfig securityPathsConfig;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -42,7 +32,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String requestPath = request.getRequestURI();
         
         // 检查是否为不需要JWT认证的路径
-        if (shouldSkipFilter(requestPath)) {
+        if (securityPathsConfig.shouldExclude(requestPath)) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -71,12 +61,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         
         filterChain.doFilter(request, response);
-    }
-    
-    /**
-     * 检查是否应该跳过JWT过滤器
-     */
-    private boolean shouldSkipFilter(String requestPath) {
-        return excludedPaths.stream().anyMatch(requestPath::startsWith);
     }
 }
