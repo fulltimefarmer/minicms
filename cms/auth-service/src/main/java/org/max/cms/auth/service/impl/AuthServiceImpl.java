@@ -8,7 +8,6 @@ import org.max.cms.auth.entity.User;
 import org.max.cms.auth.repository.UserRepository;
 import org.max.cms.auth.service.AuthService;
 import org.max.cms.auth.util.JwtUtil;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,7 +21,6 @@ import java.util.Map;
 public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 
     @Override
@@ -33,8 +31,8 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByUsername(loginRequest.getUsername())
                 .orElseThrow(() -> new RuntimeException("用户名或密码错误"));
 
-        // 验证密码
-        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+        // 验证密码（明文比较）
+        if (!loginRequest.getPassword().equals(user.getPassword())) {
             throw new RuntimeException("用户名或密码错误");
         }
 
