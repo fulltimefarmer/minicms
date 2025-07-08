@@ -118,12 +118,12 @@ SELECT
 FROM permissions p
 WHERE p.code IN ('ASSET_READ');
 
--- 插入默认用户 (密码使用BCrypt加密，原始密码为"admin123")
+-- 插入默认用户 (密码使用BCrypt加密，原始密码为"1234")
 INSERT INTO users (username, email, password, first_name, last_name, nickname, enabled) VALUES
-('admin', 'admin@company.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.', 'System', 'Administrator', '系统管理员', true),
-('manager', 'manager@company.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.', 'Department', 'Manager', '部门经理', true),
-('editor', 'editor@company.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.', 'Content', 'Editor', '内容编辑', true),
-('user', 'user@company.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.', 'Regular', 'User', '普通用户', true);
+('admin', 'admin@company.com', '$2a$10$N9qo8uLOickgx2ZMRZoMye3r/z9YEXoJ9.gvCb3q4bkdyJ/1OG3m2', 'System', 'Administrator', '系统管理员', true),
+('manager', 'manager@company.com', '$2a$10$N9qo8uLOickgx2ZMRZoMye3r/z9YEXoJ9.gvCb3q4bkdyJ/1OG3m2', 'Department', 'Manager', '部门经理', true),
+('editor', 'editor@company.com', '$2a$10$N9qo8uLOickgx2ZMRZoMye3r/z9YEXoJ9.gvCb3q4bkdyJ/1OG3m2', 'Content', 'Editor', '内容编辑', true),
+('user', 'user@company.com', '$2a$10$N9qo8uLOickgx2ZMRZoMye3r/z9YEXoJ9.gvCb3q4bkdyJ/1OG3m2', 'Regular', 'User', '普通用户', true);
 
 -- 分配用户角色
 INSERT INTO user_roles (user_id, role_id) VALUES

@@ -26,21 +26,74 @@ import { AuthService, LoginRequest } from './auth.service';
     </div>
   `,
   styles: [`
+    :host {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
     .login-container {
       max-width: 350px;
-      margin: 60px auto;
+      width: 100%;
       padding: 2rem;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
       background: #fff;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
-    label { display: block; margin-bottom: 0.5rem; }
-    input { width: 100%; padding: 0.5rem; margin-bottom: 1rem; }
-    button { width: 100%; padding: 0.75rem; background: #1976d2; color: #fff; border: none; border-radius: 4px; font-size: 1rem; }
-    .error { color: #d32f2f; margin-top: 1rem; }
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #333;
+      font-weight: 500;
+    }
+    label { 
+      display: block; 
+      margin-bottom: 0.5rem; 
+      color: #555;
+      font-weight: 500;
+    }
+    input { 
+      width: 100%; 
+      padding: 0.75rem; 
+      margin-bottom: 1rem; 
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    input:focus {
+      outline: none;
+      border-color: #1976d2;
+      box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+    }
+    button { 
+      width: 100%; 
+      padding: 0.75rem; 
+      background: #1976d2; 
+      color: #fff; 
+      border: none; 
+      border-radius: 4px; 
+      font-size: 1rem; 
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background: #1565c0;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    .error { 
+      color: #d32f2f; 
+      margin-top: 1rem; 
+      text-align: center;
+      font-size: 0.9rem;
+    }
   `]
 })
 export class LoginComponent {

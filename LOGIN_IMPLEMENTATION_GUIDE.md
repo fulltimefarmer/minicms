@@ -84,8 +84,8 @@ npm run android
 
 | 用户名 | 密码 | 角色 | 描述 |
 |--------|------|------|------|
-| admin | 123456 | 超级管理员 | 拥有所有权限 |
-| editor | 123456 | 编辑者 | 部分权限 |
+| admin | 1234 | 超级管理员 | 拥有所有权限 |
+| editor | 1234 | 编辑者 | 部分权限 |
 
 ## API 接口
 
@@ -98,7 +98,7 @@ Content-Type: application/json
 
 {
   "username": "admin",
-  "password": "123456"
+  "password": "1234"
 }
 ```
 

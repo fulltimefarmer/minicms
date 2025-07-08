@@ -70,9 +70,9 @@
 ### 默认用户账户
 | 用户名 | 密码 | 角色 | 权限范围 |
 |--------|------|------|----------|
-| admin | admin123 | SUPER_ADMIN | 所有权限 |
-| manager | admin123 | ADMIN | 管理权限 |
-| user | admin123 | USER | 基础权限 |
+| admin | 1234 | SUPER_ADMIN | 所有权限 |
+| manager | 1234 | ADMIN | 管理权限 |
+| user | 1234 | USER | 基础权限 |
 
 ### 主要功能特性
 1. **审计日志系统**: 自动记录所有操作
