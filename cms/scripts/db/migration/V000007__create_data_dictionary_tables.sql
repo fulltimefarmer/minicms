@@ -1,11 +1,11 @@
 -- 创建数据字典类型表
 CREATE TABLE dict_type (
     id BIGSERIAL PRIMARY KEY,
-    type_code VARCHAR(50) NOT NULL UNIQUE COMMENT '字典类型编码',
-    type_name VARCHAR(100) NOT NULL COMMENT '字典类型名称',
-    description VARCHAR(500) COMMENT '描述',
-    status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE' COMMENT '状态：ACTIVE-启用，INACTIVE-禁用',
-    sort_order INTEGER DEFAULT 0 COMMENT '排序顺序',
+    type_code VARCHAR(50) NOT NULL UNIQUE,
+    type_name VARCHAR(100) NOT NULL,
+    description VARCHAR(500),
+    status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE', -- 状态：ACTIVE-启用，INACTIVE-禁用
+    sort_order INTEGER DEFAULT 0, -- 排序顺序
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     created_by VARCHAR(50),
@@ -16,17 +16,17 @@ CREATE TABLE dict_type (
 -- 创建数据字典项表
 CREATE TABLE dict_item (
     id BIGSERIAL PRIMARY KEY,
-    type_id BIGINT NOT NULL COMMENT '字典类型ID',
-    item_code VARCHAR(50) NOT NULL COMMENT '字典项编码',
-    item_name VARCHAR(100) NOT NULL COMMENT '字典项名称',
-    item_value VARCHAR(500) COMMENT '字典项值',
-    description VARCHAR(500) COMMENT '描述',
-    status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE' COMMENT '状态：ACTIVE-启用，INACTIVE-禁用',
-    sort_order INTEGER DEFAULT 0 COMMENT '排序顺序',
-    parent_id BIGINT COMMENT '父级字典项ID（支持层级结构）',
-    level_depth INTEGER DEFAULT 1 COMMENT '层级深度',
-    css_class VARCHAR(100) COMMENT 'CSS样式类',
-    icon VARCHAR(50) COMMENT '图标',
+    type_id BIGINT NOT NULL, -- 字典类型ID
+    item_code VARCHAR(50) NOT NULL, -- 字典项编码
+    item_name VARCHAR(100) NOT NULL, -- 字典项名称
+    item_value VARCHAR(500), -- 字典项值
+    description VARCHAR(500), -- 描述
+    status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE', -- 状态：ACTIVE-启用，INACTIVE-禁用
+    sort_order INTEGER DEFAULT 0, -- 排序顺序
+    parent_id BIGINT, -- 父级字典项ID（支持层级结构）
+    level_depth INTEGER DEFAULT 1, -- 层级深度
+    css_class VARCHAR(100), -- CSS样式类
+    icon VARCHAR(50), -- 图标
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     created_by VARCHAR(50),
@@ -94,6 +94,3 @@ INSERT INTO dict_item (type_id, item_code, item_name, item_value, description, s
 ((SELECT id FROM dict_type WHERE type_code = 'audit_risk_level'), 'low', '低风险', 'LOW', '低风险操作', 'ACTIVE', 1, 'system', 'system'),
 ((SELECT id FROM dict_type WHERE type_code = 'audit_risk_level'), 'medium', '中风险', 'MEDIUM', '中风险操作', 'ACTIVE', 2, 'system', 'system'),
 ((SELECT id FROM dict_type WHERE type_code = 'audit_risk_level'), 'high', '高风险', 'HIGH', '高风险操作', 'ACTIVE', 3, 'system', 'system');
-
-COMMENT ON TABLE dict_type IS '数据字典类型表';
-COMMENT ON TABLE dict_item IS '数据字典项表';
