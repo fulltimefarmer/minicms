@@ -5,6 +5,8 @@ import { UserManagementComponent } from './user-management.component';
 import { DepartmentManagementComponent } from './department-management.component';
 import { DashboardComponent } from './dashboard.component';
 import { AssetManagementComponent } from './asset-management.component';
+import { DictTypeManagementComponent } from './dict-type-management.component';
+import { DictItemManagementComponent } from './dict-item-management.component';
 import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
@@ -13,6 +15,8 @@ export const routes: Routes = [
   { path: 'departments', component: DepartmentManagementComponent, canActivate: [AuthGuard] },
   { path: 'assets', component: AssetManagementComponent, canActivate: [AuthGuard] },
   { path: 'permission-management', component: PermissionManagementComponent, canActivate: [AuthGuard] },
+  { path: 'dict-types', component: DictTypeManagementComponent, canActivate: [AuthGuard] },
+  { path: 'dict-items', component: DictItemManagementComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
