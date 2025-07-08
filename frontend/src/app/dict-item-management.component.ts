@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NotificationService } from './notification.service';
 
 interface DictItem {
   id?: number;
@@ -713,7 +714,8 @@ export class DictItemManagementComponent implements OnInit {
   constructor(
     private http: HttpClient, 
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notification: NotificationService
   ) {}
 
   ngOnInit() {
@@ -762,7 +764,7 @@ export class DictItemManagementComponent implements OnInit {
       },
       error: (error) => {
         console.error('加载字典项失败:', error);
-        alert('加载字典项失败，请重试');
+        this.notification.alert('加载字典项失败，请重试');
       }
     });
   }
@@ -817,24 +819,27 @@ export class DictItemManagementComponent implements OnInit {
     if (this.saving) return;
     
     this.saving = true;
-    const method = this.isEditing ? 'put' : 'post';
     const url = this.isEditing ? `${this.itemApiUrl}/${this.currentItem.id}` : this.itemApiUrl;
 
-    this.http[method]<any>(url, this.currentItem).subscribe({
+    const request$ = this.isEditing 
+      ? this.http.put<any>(url, this.currentItem)
+      : this.http.post<any>(url, this.currentItem);
+
+    request$.subscribe({
       next: (response) => {
         this.saving = false;
         if (response.success) {
-          alert(this.isEditing ? '更新成功' : '添加成功');
+          this.notification.alert(this.isEditing ? '更新成功' : '添加成功');
           this.closeModal();
           this.loadItems();
         } else {
-          alert(response.message || '操作失败');
+          this.notification.alert(response.message || '操作失败');
         }
       },
       error: (error) => {
         this.saving = false;
         console.error('保存失败:', error);
-        alert(error.error?.message || '保存失败，请重试');
+        this.notification.alert(error.error?.message || '保存失败，请重试');
       }
     });
   }
@@ -843,41 +848,41 @@ export class DictItemManagementComponent implements OnInit {
     const newStatus = item.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE';
     const action = newStatus === 'ACTIVE' ? '启用' : '禁用';
     
-    if (confirm(`确定要${action}字典项"${item.itemName}"吗？`)) {
+    if (this.notification.confirm(`确定要${action}字典项"${item.itemName}"吗？`)) {
       this.http.put<any>(`${this.itemApiUrl}/${item.id}/status`, null, {
         params: { status: newStatus }
       }).subscribe({
         next: (response) => {
           if (response.success) {
             item.status = newStatus;
-            alert(`${action}成功`);
+            this.notification.alert(`${action}成功`);
             this.filterItems();
           } else {
-            alert(response.message || `${action}失败`);
+            this.notification.alert(response.message || `${action}失败`);
           }
         },
         error: (error) => {
           console.error(`${action}失败:`, error);
-          alert(`${action}失败，请重试`);
+          this.notification.alert(`${action}失败，请重试`);
         }
       });
     }
   }
 
   deleteItem(item: DictItem) {
-    if (confirm(`确定要删除字典项"${item.itemName}"吗？删除后不可恢复。`)) {
+    if (this.notification.confirm(`确定要删除字典项"${item.itemName}"吗？删除后不可恢复。`)) {
       this.http.delete<any>(`${this.itemApiUrl}/${item.id}`).subscribe({
         next: (response) => {
           if (response.success) {
-            alert('删除成功');
+            this.notification.alert('删除成功');
             this.loadItems();
           } else {
-            alert(response.message || '删除失败');
+            this.notification.alert(response.message || '删除失败');
           }
         },
         error: (error) => {
           console.error('删除失败:', error);
-          alert(error.error?.message || '删除失败，请重试');
+          this.notification.alert(error.error?.message || '删除失败，请重试');
         }
       });
     }

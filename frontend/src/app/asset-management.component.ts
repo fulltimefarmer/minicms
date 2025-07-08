@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { NotificationService } from './notification.service';
 
 export interface Asset {
   id: number;
@@ -291,11 +292,17 @@ export class AssetManagementComponent implements OnInit {
     status: 'ACTIVE'
   };
   
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient, 
+    private notification: NotificationService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
   
   ngOnInit() {
-    this.loadAllAssets();
-    this.loadUsers();
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadAllAssets();
+      this.loadUsers();
+    }
   }
   
   switchTab(tab: string) {
@@ -317,7 +324,7 @@ export class AssetManagementComponent implements OnInit {
       },
       error: (error) => {
         console.error('加载资产失败:', error);
-        alert('加载资产失败');
+        this.notification.alert('加载资产失败');
       }
     });
   }
@@ -331,7 +338,7 @@ export class AssetManagementComponent implements OnInit {
       },
       error: (error) => {
         console.error('加载未分配资产失败:', error);
-        alert('加载未分配资产失败');
+        this.notification.alert('加载未分配资产失败');
       }
     });
   }
@@ -349,7 +356,7 @@ export class AssetManagementComponent implements OnInit {
   
   createAsset() {
     if (!this.newAsset.name || !this.newAsset.assetNumber) {
-      alert('请填写必填字段');
+      this.notification.alert('请填写必填字段');
       return;
     }
     
@@ -357,11 +364,11 @@ export class AssetManagementComponent implements OnInit {
       next: (data) => {
         this.loadAllAssets();
         this.cancelCreate();
-        alert('资产创建成功');
+        this.notification.alert('资产创建成功');
       },
       error: (error) => {
         console.error('创建资产失败:', error);
-        alert('创建资产失败');
+        this.notification.alert('创建资产失败');
       }
     });
   }
@@ -382,7 +389,7 @@ export class AssetManagementComponent implements OnInit {
   
   editAsset(asset: Asset) {
     // 编辑功能的实现
-    alert('编辑功能待实现');
+    this.notification.alert('编辑功能待实现');
   }
   
   showBindDialog(asset: Asset) {
@@ -407,17 +414,17 @@ export class AssetManagementComponent implements OnInit {
         this.loadAllAssets();
         this.loadUnassignedAssets();
         this.hideBindDialog();
-        alert('资产绑定成功');
+        this.notification.alert('资产绑定成功');
       },
       error: (error) => {
         console.error('绑定资产失败:', error);
-        alert('绑定资产失败: ' + (error.error || error.message));
+        this.notification.alert('绑定资产失败: ' + (error.error || error.message));
       }
     });
   }
   
   unbindAsset(asset: Asset) {
-    if (!confirm('确定要解绑该资产吗？')) {
+    if (!this.notification.confirm('确定要解绑该资产吗？')) {
       return;
     }
     
@@ -425,17 +432,17 @@ export class AssetManagementComponent implements OnInit {
       next: (response) => {
         this.loadAllAssets();
         this.loadUnassignedAssets();
-        alert('资产解绑成功');
+        this.notification.alert('资产解绑成功');
       },
       error: (error) => {
         console.error('解绑资产失败:', error);
-        alert('解绑资产失败: ' + (error.error || error.message));
+        this.notification.alert('解绑资产失败: ' + (error.error || error.message));
       }
     });
   }
   
   deleteAsset(asset: Asset) {
-    if (!confirm('确定要删除该资产吗？')) {
+    if (!this.notification.confirm('确定要删除该资产吗？')) {
       return;
     }
     
@@ -443,11 +450,11 @@ export class AssetManagementComponent implements OnInit {
       next: (response) => {
         this.loadAllAssets();
         this.loadUnassignedAssets();
-        alert('资产删除成功');
+        this.notification.alert('资产删除成功');
       },
       error: (error) => {
         console.error('删除资产失败:', error);
-        alert('删除资产失败: ' + (error.error || error.message));
+        this.notification.alert('删除资产失败: ' + (error.error || error.message));
       }
     });
   }

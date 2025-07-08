@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NotificationService } from './notification.service';
 
 interface Department {
   id: number;
@@ -542,11 +543,17 @@ export class DepartmentManagementComponent implements OnInit {
   
   private apiUrl = 'http://localhost:8080/api/departments';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient, 
+    private notification: NotificationService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit() {
-    this.loadDepartments();
-    this.expandedNodes.add(1); // 默认展开第一个节点
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadDepartments();
+      this.expandedNodes.add(1); // 默认展开第一个节点
+    }
   }
 
   loadDepartments() {
@@ -624,15 +631,15 @@ export class DepartmentManagementComponent implements OnInit {
 
   deleteDepartment(department: Department, event: Event) {
     event.stopPropagation();
-    if (confirm(`确定要删除部门"${department.name}"吗？`)) {
+    if (this.notification.confirm(`确定要删除部门"${department.name}"吗？`)) {
       this.http.delete(`${this.apiUrl}/${department.id}`).subscribe({
         next: () => {
           this.loadDepartments();
-          alert('部门删除成功');
+          this.notification.alert('部门删除成功');
         },
         error: (error) => {
           console.error('删除部门失败:', error);
-          alert('删除失败：' + (error.error?.message || '未知错误'));
+          this.notification.alert('删除失败：' + (error.error?.message || '未知错误'));
         }
       });
     }
@@ -644,11 +651,11 @@ export class DepartmentManagementComponent implements OnInit {
         next: () => {
           this.loadDepartments();
           this.closeModal();
-          alert('部门更新成功');
+          this.notification.alert('部门更新成功');
         },
         error: (error) => {
           console.error('更新部门失败:', error);
-          alert('更新失败：' + (error.error?.message || '未知错误'));
+          this.notification.alert('更新失败：' + (error.error?.message || '未知错误'));
         }
       });
     } else {
@@ -656,11 +663,11 @@ export class DepartmentManagementComponent implements OnInit {
         next: () => {
           this.loadDepartments();
           this.closeModal();
-          alert('部门创建成功');
+          this.notification.alert('部门创建成功');
         },
         error: (error) => {
           console.error('创建部门失败:', error);
-          alert('创建失败：' + (error.error?.message || '未知错误'));
+          this.notification.alert('创建失败：' + (error.error?.message || '未知错误'));
         }
       });
     }
