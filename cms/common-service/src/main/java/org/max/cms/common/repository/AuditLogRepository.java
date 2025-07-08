@@ -3,6 +3,7 @@ package org.max.cms.common.repository;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -29,22 +30,22 @@ public interface AuditLogRepository extends BaseMapper<AuditLog> {
         "<if test='query.userId != null'>",
         "  AND user_id = #{query.userId}",
         "</if>",
-        "<if test='query.username != null and query.username != \"\"'>",
+        "<if test='query.username != null and query.username != &quot;&quot;'>",
         "  AND username LIKE CONCAT('%', #{query.username}, '%')",
         "</if>",
-        "<if test='query.operationType != null and query.operationType != \"\"'>",
+        "<if test='query.operationType != null and query.operationType != &quot;&quot;'>",
         "  AND operation_type = #{query.operationType}",
         "</if>",
-        "<if test='query.businessModule != null and query.businessModule != \"\"'>",
+        "<if test='query.businessModule != null and query.businessModule != &quot;&quot;'>",
         "  AND business_module = #{query.businessModule}",
         "</if>",
-        "<if test='query.status != null and query.status != \"\"'>",
+        "<if test='query.status != null and query.status != &quot;&quot;'>",
         "  AND status = #{query.status}",
         "</if>",
-        "<if test='query.riskLevel != null and query.riskLevel != \"\"'>",
+        "<if test='query.riskLevel != null and query.riskLevel != &quot;&quot;'>",
         "  AND risk_level = #{query.riskLevel}",
         "</if>",
-        "<if test='query.ipAddress != null and query.ipAddress != \"\"'>",
+        "<if test='query.ipAddress != null and query.ipAddress != &quot;&quot;'>",
         "  AND ip_address = #{query.ipAddress}",
         "</if>",
         "<if test='query.startTime != null'>",
@@ -53,7 +54,7 @@ public interface AuditLogRepository extends BaseMapper<AuditLog> {
         "<if test='query.endTime != null'>",
         "  AND start_time <= #{query.endTime}",
         "</if>",
-        "<if test='query.keyword != null and query.keyword != \"\"'>",
+        "<if test='query.keyword != null and query.keyword != &quot;&quot;'>",
         "  AND (",
         "    operation_name LIKE CONCAT('%', #{query.keyword}, '%')",
         "    OR operation_desc LIKE CONCAT('%', #{query.keyword}, '%')",
@@ -171,7 +172,7 @@ public interface AuditLogRepository extends BaseMapper<AuditLog> {
     /**
      * 清理过期的审计日志
      */
-    @Select({
+    @Delete({
         "DELETE FROM audit_logs",
         "WHERE operation_date < #{expireDate}"
     })
