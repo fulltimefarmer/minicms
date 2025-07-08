@@ -400,44 +400,7 @@ public class UserService {
 
 ### 复杂业务场景审计
 
-```java
-@Service
-@RequiredArgsConstructor
-public class WorkflowService {
-    
-    private final AuditLogService auditLogService;
-    
-    /**
-     * 工作流审批
-     */
-    public void approveWorkflow(Long workflowId, String approverComment, boolean approved) {
-        // 业务逻辑...
-        
-        // 自定义审计记录
-        LocalDateTime now = LocalDateTime.now();
-        
-        AuditLog auditLog = new AuditLog()
-            .setOperationType(approved ? "APPROVE" : "REJECT")
-            .setOperationName(approved ? "审批通过" : "审批拒绝")
-            .setOperationDesc(String.format("工作流审批: %s, 意见: %s", approved ? "通过" : "拒绝", approverComment))
-            .setBusinessModule("WORKFLOW")
-            .setTargetType("Workflow")
-            .setTargetId(workflowId.toString())
-            .setTargetName("工作流审批")
-            .setUserId(AuditContextHolder.getCurrentUserId())
-            .setUsername(AuditContextHolder.getCurrentUsername())
-            .setUserRealName(AuditContextHolder.getCurrentUserRealName())
-            .setIpAddress(IpUtils.getClientIpAddress())
-            .setStatus(AuditLog.Status.SUCCESS)
-            .setRiskLevel(AuditLog.RiskLevel.MEDIUM)
-            .setStartTime(now)
-            .setEndTime(now)
-            .setOperationDate(now.toLocalDate());
-        
-        auditLogService.saveAsync(auditLog);
-    }
-}
-```
+对于复杂的业务场景，可以通过手动创建审计日志的方式来记录特定的业务操作。
 
 ## 6. 定时任务审计示例
 
