@@ -32,7 +32,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         
-        String requestPath = request.getRequestURI();
+        // 使用getServletPath()获取去除context path后的路径，确保与Spring Security的路径匹配逻辑一致
+        String requestPath = request.getServletPath();
         log.debug("Processing request: {} {}", request.getMethod(), requestPath);
         
         // 检查是否为不需要JWT认证的路径
