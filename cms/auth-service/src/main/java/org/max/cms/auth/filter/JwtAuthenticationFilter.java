@@ -33,9 +33,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         
         String requestPath = request.getRequestURI();
+        log.debug("Processing request: {} {}", request.getMethod(), requestPath);
         
         // 检查是否为不需要JWT认证的路径
-        if (securityPathsConfig.shouldExclude(requestPath)) {
+        boolean shouldExclude = securityPathsConfig.shouldExclude(requestPath);
+        log.debug("Path {} should exclude: {}", requestPath, shouldExclude);
+        
+        if (shouldExclude) {
+            log.debug("Excluding path {} from JWT authentication", requestPath);
             filterChain.doFilter(request, response);
             return;
         }
