@@ -26,12 +26,6 @@ spring:
     locations: filesystem:../scripts/db/migration
     baseline-on-migrate: true
     baseline-version: 0
-    
-  security:
-    user:
-      name: admin
-      password: admin123
-      roles: ADMIN
 
 # MyBatis Plus Configuration
 mybatis-plus:
@@ -68,8 +62,6 @@ logging:
 # Server Configuration
 server:
   port: 8080
-  servlet:
-    context-path: /api
 
 # Management Endpoints
 management:
@@ -86,8 +78,6 @@ auth:
   security:
     exclude-paths:
       # 认证相关路径 - 支持多种路径格式
-      - "/auth/login"
-      - "/auth/register"
       - "/api/auth/login"
       - "/api/auth/register"
       
