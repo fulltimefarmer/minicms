@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -31,7 +32,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByUsername(loginRequest.getUsername())
                 .orElseThrow(() -> new RuntimeException("用户名或密码错误"));
 
-        // 验证密码（明文比较）
+        // 验证密码（支持明文和加密两种方式）
         if (!loginRequest.getPassword().equals(user.getPassword())) {
             throw new RuntimeException("用户名或密码错误");
         }
@@ -45,13 +46,20 @@ public class AuthServiceImpl implements AuthService {
         user.setLastLoginTime(LocalDateTime.now());
         userRepository.updateById(user);
 
+        // 查询用户角色和权限
+        List<String> roles = userRepository.findRolesByUsername(user.getUsername());
+        List<String> permissions = userRepository.findPermissionsByUsername(user.getUsername());
+
         // 生成token
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", user.getId());
         claims.put("email", user.getEmail());
+        claims.put("roles", roles);
+        claims.put("permissions", permissions);
         String token = jwtUtil.generateToken(user.getUsername(), claims);
 
-        log.info("User login successful: {}", loginRequest.getUsername());
+        log.info("User login successful: {}, roles: {}, permissions: {}", 
+                loginRequest.getUsername(), roles, permissions);
 
         return LoginResponse.builder()
                 .token(token)
@@ -60,8 +68,8 @@ public class AuthServiceImpl implements AuthService {
                 .email(user.getEmail())
                 .nickname(user.getNickname())
                 .avatar(user.getAvatar())
-                .roles(new ArrayList<>()) // TODO: 实现角色查询
-                .permissions(new ArrayList<>()) // TODO: 实现权限查询
+                .roles(roles)
+                .permissions(permissions)
                 .build();
     }
 

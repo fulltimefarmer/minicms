@@ -20,6 +20,8 @@ public class User extends BaseEntity {
     private String password;
     private String email;
     private String phone;
+    private String firstName;
+    private String lastName;
     private String nickname;
     private String avatar;
     private Boolean enabled = true;

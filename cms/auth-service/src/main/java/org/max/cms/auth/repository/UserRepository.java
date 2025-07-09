@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.max.cms.auth.entity.User;
 
+import java.util.List;
 import java.util.Optional;
 
 @Mapper
@@ -16,4 +17,8 @@ public interface UserRepository extends BaseMapper<User> {
     boolean existsByUsername(String username);
     
     boolean existsByEmail(String email);
+    
+    List<String> findRolesByUsername(String username);
+    
+    List<String> findPermissionsByUsername(String username);
 }

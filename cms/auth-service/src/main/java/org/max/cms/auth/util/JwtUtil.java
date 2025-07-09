@@ -10,8 +10,10 @@ import org.springframework.stereotype.Component;
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.ArrayList;
 
 @Component
 public class JwtUtil {
@@ -32,6 +34,13 @@ public class JwtUtil {
 
     public Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<String> extractPermissions(String token) {
+        Claims claims = extractAllClaims(token);
+        List<String> permissions = (List<String>) claims.get("permissions");
+        return permissions != null ? permissions : new ArrayList<>();
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
