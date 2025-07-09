@@ -59,7 +59,7 @@ public class SecurityPathsConfig {
                 log.debug("Wildcard /* match: {} vs {} -> {}", path, excludePath, matches);
                 return matches;
             } else {
-                boolean matches = path.equals(excludePath) || path.startsWith(excludePath);
+                boolean matches = path.equals(excludePath);
                 log.debug("Exact match: {} vs {} -> {}", path, excludePath, matches);
                 return matches;
             }
