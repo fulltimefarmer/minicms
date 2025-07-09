@@ -18,13 +18,18 @@ import java.util.ArrayList;
 @Component
 public class JwtUtil {
 
-    @Value("${jwt.secret:mySecretKey}")
+    @Value("${jwt.secret:}")
     private String secret;
 
     @Value("${jwt.expiration:86400000}") // 24小时
     private Long expiration;
 
     private SecretKey getSigningKey() {
+        // Check if the secret is empty or too short (less than 256 bits / 32 bytes)
+        if (secret == null || secret.trim().isEmpty() || secret.getBytes().length < 32) {
+            // Generate a secure key automatically as recommended by JWT specification
+            return Keys.secretKeyFor(SignatureAlgorithm.HS256);
+        }
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
 
