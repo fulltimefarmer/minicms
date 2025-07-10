@@ -50,7 +50,7 @@ public class AuthServiceImpl implements AuthService {
         List<String> roles = userRepository.findRolesByUsername(user.getUsername());
         List<String> permissions = userRepository.findPermissionsByUsername(user.getUsername());
 
-        // 生成token
+        // 生成JWT token
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", user.getId());
         claims.put("email", user.getEmail());
@@ -80,13 +80,22 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public boolean validateToken(String token) {
-        return jwtUtil.validateToken(token);
-    }
-
-    @Override
     public String refreshToken(String token) {
         String username = jwtUtil.extractUsername(token);
-        return jwtUtil.generateToken(username);
+        
+        // 重新查询用户信息以获取最新的角色和权限
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("用户不存在"));
+        
+        List<String> roles = userRepository.findRolesByUsername(username);
+        List<String> permissions = userRepository.findPermissionsByUsername(username);
+        
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", user.getId());
+        claims.put("email", user.getEmail());
+        claims.put("roles", roles);
+        claims.put("permissions", permissions);
+        
+        return jwtUtil.generateToken(username, claims);
     }
 }

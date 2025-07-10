@@ -1,7 +1,6 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -25,27 +24,11 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    // 检查用户是否已登录
+    // 检查用户是否已登录且token有效
     if (this.authService.isLoggedIn()) {
-      // 验证token是否有效
-      return this.authService.validateToken().pipe(
-        map(isValid => {
-          if (isValid) {
-            return true;
-          } else {
-            // token无效，跳转到登录页
-            this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
-            return false;
-          }
-        }),
-        catchError(() => {
-          // 验证失败，跳转到登录页
-          this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
-          return of(false);
-        })
-      );
+      return true;
     } else {
-      // 未登录，跳转到登录页
+      // 未登录或token无效，跳转到登录页
       this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       return false;
     }

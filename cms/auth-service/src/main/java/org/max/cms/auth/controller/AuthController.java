@@ -40,19 +40,6 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/validate")
-    public ApiResponse<Boolean> validateToken(@RequestHeader("Authorization") String token) {
-        try {
-            if (token.startsWith("Bearer ")) {
-                token = token.substring(7);
-            }
-            boolean isValid = authService.validateToken(token);
-            return ApiResponse.success(isValid);
-        } catch (Exception e) {
-            return ApiResponse.error(e.getMessage());
-        }
-    }
-
     @PostMapping("/refresh")
     public ApiResponse<String> refreshToken(@RequestHeader("Authorization") String token) {
         try {
