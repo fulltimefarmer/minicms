@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PermissionService, User, Role, Permission } from './permission.service';
+import { PermissionService, User, Role, Permission } from '../../services/permission.service';
 
 @Component({
   selector: 'app-permission-management',

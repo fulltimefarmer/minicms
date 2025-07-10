@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { NotificationService } from './notification.service';
+import { NotificationService } from '../../services/notification.service';
 
 interface DictType {
   id?: number;

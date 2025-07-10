@@ -77,7 +77,7 @@
     <!-- 用户信息（底部） -->
     <div class="user-section">
       <div class="user-info" *ngIf="!sidebarCollapsed">
-        <div class="user-avatar">{{ getCurrentUser()?.username?.charAt(0).toUpperCase() }}</div>
+        <div class="user-avatar">{{ getCurrentUser()?.username?.charAt(0)?.toUpperCase() || '' }}</div>
         <div class="user-details">
           <span class="username">{{ getCurrentUser()?.username }}</span>
           <button class="logout-btn" (click)="logout()">退出</button>
@@ -85,7 +85,7 @@
       </div>
       <div class="user-info-mini" *ngIf="sidebarCollapsed">
         <div class="user-avatar" [title]="getCurrentUser()?.username">
-          {{ getCurrentUser()?.username?.charAt(0).toUpperCase() }}
+          {{ getCurrentUser()?.username?.charAt(0)?.toUpperCase() || '' }}
         </div>
         <button class="logout-btn-mini" (click)="logout()" title="退出">🚪</button>
       </div>
