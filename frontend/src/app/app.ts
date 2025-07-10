@@ -1,65 +1,73 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
-import { Router } from '@angular/router';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { User } from './permission.service';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet, RouterModule } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, CommonModule],
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, RouterModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  protected title = 'frontend-app';
+export class AppComponent implements OnInit {
+  title = 'frontend-app';
+  sidebarCollapsed = false;
+  currentRoute = '';
   
-  // 开发模式标志 - 生产环境请设置为 false
-  private readonly DEV_MODE = true;
+  // 页面标题映射
+  private pageTitles: { [key: string]: string } = {
+    '/todos': '待办事项',
+    '/dashboard': '仪表板',
+    '/users': '用户管理',
+    '/departments': '部门管理',
+    '/assets': '资产管理',
+    '/permission-management': '权限管理',
+    '/dict-types': '数据字典',
+    '/dict-items': '数据字典项',
+    '/login': '登录'
+  };
 
   constructor(
-    private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    // 开发模式下自动设置测试用户
-    if (this.DEV_MODE && isPlatformBrowser(this.platformId)) {
-      this.setupTestUser();
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    // 监听路由变化，更新当前路由
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.currentRoute = event.url;
+    });
+
+    // 检查本地存储中的侧边栏状态
+    const sidebarState = localStorage.getItem('sidebarCollapsed');
+    if (sidebarState) {
+      this.sidebarCollapsed = JSON.parse(sidebarState);
     }
   }
 
-  getCurrentUser(): User | null {
-    if (isPlatformBrowser(this.platformId)) {
-      const userStr = localStorage.getItem('currentUser');
-      return userStr ? JSON.parse(userStr) : null;
-    }
-    return null;
+  getCurrentUser() {
+    return this.authService.currentUserValue;
   }
 
-  logout(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.removeItem('currentUser');
-      localStorage.removeItem('token');
-    }
+  logout() {
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 
-  private setupTestUser(): void {
-    if (!localStorage.getItem('currentUser')) {
-      const testUser = {
-        userId: 1,
-        username: 'testuser',
-        email: 'test@example.com',
-        nickname: '测试用户',
-        avatar: '',
-        roles: ['ADMIN'],
-        permissions: ['USER_MANAGE', 'DEPT_MANAGE', 'ASSET_MANAGE'],
-        token: 'test-token-for-dev',
-        tokenType: 'Bearer'
-      };
-      
-      localStorage.setItem('currentUser', JSON.stringify(testUser));
-      localStorage.setItem('token', 'test-token-for-dev');
-      
-      console.log('🧪 开发模式: 已设置测试用户数据');
-    }
+  toggleSidebar() {
+    this.sidebarCollapsed = !this.sidebarCollapsed;
+    // 保存侧边栏状态到本地存储
+    localStorage.setItem('sidebarCollapsed', JSON.stringify(this.sidebarCollapsed));
+  }
+
+  getPageTitle(): string {
+    // 根据当前路由返回页面标题
+    const baseRoute = this.currentRoute.split('?')[0]; // 移除查询参数
+    return this.pageTitles[baseRoute] || '权限管理系统';
   }
 }

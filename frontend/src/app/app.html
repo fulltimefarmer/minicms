@@ -1,136 +1,443 @@
 <div class="app-container">
-  <!-- 顶部导航栏 -->
-  <nav class="navbar" *ngIf="getCurrentUser()">
-    <div class="nav-brand">
-      <h2>权限管理系统</h2>
+  <!-- 左侧导航栏 -->
+  <nav class="sidebar" [class.collapsed]="sidebarCollapsed" *ngIf="getCurrentUser()">
+    <!-- 侧边栏头部 -->
+    <div class="sidebar-header">
+      <div class="logo" *ngIf="!sidebarCollapsed">
+        <h2>权限管理系统</h2>
+      </div>
+      <div class="logo-mini" *ngIf="sidebarCollapsed">
+        <span>权</span>
+      </div>
+      <button class="toggle-btn" (click)="toggleSidebar()">
+        <span class="toggle-icon" [class.rotated]="sidebarCollapsed">‹</span>
+      </button>
     </div>
-    <div class="nav-links">
-      <button class="nav-btn" routerLink="/dashboard">仪表板</button>
-      <button class="nav-btn" routerLink="/users">用户管理</button>
-      <button class="nav-btn" routerLink="/departments">部门管理</button>
-      <button class="nav-btn" routerLink="/assets">资产管理</button>
-      <button class="nav-btn" routerLink="/permission-management">权限管理</button>
-      <button class="nav-btn" routerLink="/dict-types">数据字典</button>
-      <div class="user-info">
-        <span>欢迎，{{ getCurrentUser()?.username }}</span>
-        <button class="logout-btn" (click)="logout()">退出</button>
+
+    <!-- 导航菜单 -->
+    <div class="nav-menu">
+      <div class="nav-item" routerLinkActive="active">
+        <a routerLink="/todos" class="nav-link">
+          <span class="nav-icon">📋</span>
+          <span class="nav-text" *ngIf="!sidebarCollapsed">待办事项</span>
+        </a>
+      </div>
+      
+      <div class="nav-item" routerLinkActive="active">
+        <a routerLink="/dashboard" class="nav-link">
+          <span class="nav-icon">📊</span>
+          <span class="nav-text" *ngIf="!sidebarCollapsed">仪表板</span>
+        </a>
+      </div>
+
+      <div class="nav-section" *ngIf="!sidebarCollapsed">
+        <span class="section-title">用户管理</span>
+      </div>
+      
+      <div class="nav-item" routerLinkActive="active">
+        <a routerLink="/users" class="nav-link">
+          <span class="nav-icon">👥</span>
+          <span class="nav-text" *ngIf="!sidebarCollapsed">用户管理</span>
+        </a>
+      </div>
+      
+      <div class="nav-item" routerLinkActive="active">
+        <a routerLink="/departments" class="nav-link">
+          <span class="nav-icon">🏢</span>
+          <span class="nav-text" *ngIf="!sidebarCollapsed">部门管理</span>
+        </a>
+      </div>
+      
+      <div class="nav-item" routerLinkActive="active">
+        <a routerLink="/permission-management" class="nav-link">
+          <span class="nav-icon">🔒</span>
+          <span class="nav-text" *ngIf="!sidebarCollapsed">权限管理</span>
+        </a>
+      </div>
+
+      <div class="nav-section" *ngIf="!sidebarCollapsed">
+        <span class="section-title">系统管理</span>
+      </div>
+      
+      <div class="nav-item" routerLinkActive="active">
+        <a routerLink="/assets" class="nav-link">
+          <span class="nav-icon">💎</span>
+          <span class="nav-text" *ngIf="!sidebarCollapsed">资产管理</span>
+        </a>
+      </div>
+      
+      <div class="nav-item" routerLinkActive="active">
+        <a routerLink="/dict-types" class="nav-link">
+          <span class="nav-icon">📚</span>
+          <span class="nav-text" *ngIf="!sidebarCollapsed">数据字典</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 用户信息（底部） -->
+    <div class="user-section">
+      <div class="user-info" *ngIf="!sidebarCollapsed">
+        <div class="user-avatar">{{ getCurrentUser()?.username?.charAt(0).toUpperCase() }}</div>
+        <div class="user-details">
+          <span class="username">{{ getCurrentUser()?.username }}</span>
+          <button class="logout-btn" (click)="logout()">退出</button>
+        </div>
+      </div>
+      <div class="user-info-mini" *ngIf="sidebarCollapsed">
+        <div class="user-avatar" [title]="getCurrentUser()?.username">
+          {{ getCurrentUser()?.username?.charAt(0).toUpperCase() }}
+        </div>
+        <button class="logout-btn-mini" (click)="logout()" title="退出">🚪</button>
       </div>
     </div>
   </nav>
 
   <!-- 主要内容区域 -->
-  <main class="main-content" [class.with-nav]="getCurrentUser()">
-    <router-outlet />
+  <main class="main-content" [class.with-sidebar]="getCurrentUser()" [class.sidebar-collapsed]="sidebarCollapsed && getCurrentUser()">
+    <!-- 顶部栏（移动端或无侧边栏时显示） -->
+    <div class="topbar" *ngIf="getCurrentUser()">
+      <div class="topbar-content">
+        <button class="mobile-menu-btn" (click)="toggleSidebar()">☰</button>
+        <h1 class="page-title">{{ getPageTitle() }}</h1>
+      </div>
+    </div>
+    
+    <div class="content-wrapper">
+      <router-outlet />
+    </div>
   </main>
 </div>
 
 <style>
   .app-container {
+    display: flex;
     min-height: 100vh;
     background-color: #f5f5f5;
+  }
+
+  /* 侧边栏样式 */
+  .sidebar {
+    width: 280px;
+    background: #2c3e50;
+    color: white;
     display: flex;
     flex-direction: column;
-  }
-
-  .navbar {
-    background: #fff;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
+    transition: width 0.3s ease;
+    position: fixed;
+    height: 100vh;
     z-index: 1000;
-    flex-shrink: 0;
+    overflow: hidden;
   }
 
-  .nav-brand h2 {
-    margin: 0;
-    color: #1976d2;
-    font-size: 1.5rem;
+  .sidebar.collapsed {
+    width: 70px;
   }
 
-  .nav-links {
+  .sidebar-header {
+    padding: 1rem;
+    border-bottom: 1px solid #34495e;
     display: flex;
     align-items: center;
-    gap: 2rem;
+    justify-content: space-between;
+    min-height: 70px;
   }
 
-  .nav-btn {
-    background: #1976d2;
-    color: white;
+  .logo h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #ecf0f1;
+  }
+
+  .logo-mini {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 50%;
+  }
+
+  .toggle-btn {
+    background: none;
     border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
+    color: #bdc3c7;
+    font-size: 1.5rem;
     cursor: pointer;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: background-color 0.3s;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
   }
 
-  .nav-btn:hover {
-    background: #1565c0;
+  .toggle-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+  }
+
+  .toggle-icon {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .toggle-icon.rotated {
+    transform: rotate(180deg);
+  }
+
+  /* 导航菜单 */
+  .nav-menu {
+    flex: 1;
+    padding: 1rem 0;
+    overflow-y: auto;
+  }
+
+  .nav-section {
+    padding: 1rem 1.5rem 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .section-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #95a5a6;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-item {
+    margin: 0.25rem 0;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 0;
+  }
+
+  .nav-link:hover {
+    background: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+  }
+
+  .nav-item.active .nav-link {
+    background: #3498db;
+    color: white;
+  }
+
+  .nav-icon {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    width: 20px;
+    text-align: center;
+  }
+
+  .nav-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  /* 用户信息 */
+  .user-section {
+    border-top: 1px solid #34495e;
+    padding: 1rem;
   }
 
   .user-info {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
-  .user-info span {
-    color: #666;
+  .user-info-mini {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    background: #3498db;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+  }
+
+  .user-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .username {
     font-size: 0.9rem;
+    font-weight: 500;
+    color: #ecf0f1;
   }
 
   .logout-btn {
-    background: #f44336;
+    background: #e74c3c;
     color: white;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 0.5rem;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     transition: background-color 0.3s;
+    align-self: flex-start;
   }
 
   .logout-btn:hover {
-    background: #d32f2f;
+    background: #c0392b;
   }
 
+  .logout-btn-mini {
+    background: none;
+    border: none;
+    color: #bdc3c7;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .logout-btn-mini:hover {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+  }
+
+  /* 主内容区域 */
   .main-content {
     flex: 1;
     display: flex;
     flex-direction: column;
-  }
-
-  .main-content.with-nav {
-    /* 当有导航栏时的样式 */
-  }
-
-  /* 当没有导航栏时（登录页面），让内容填满整个屏幕 */
-  .main-content:not(.with-nav) {
     min-height: 100vh;
   }
 
+  .main-content.with-sidebar {
+    margin-left: 280px;
+    transition: margin-left 0.3s ease;
+  }
+
+  .main-content.with-sidebar.sidebar-collapsed {
+    margin-left: 70px;
+  }
+
+  .topbar {
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: none;
+  }
+
+  .topbar-content {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .mobile-menu-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+
+  .mobile-menu-btn:hover {
+    background: #f5f5f5;
+  }
+
+  .page-title {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .content-wrapper {
+    flex: 1;
+    padding: 0;
+    overflow-y: auto;
+  }
+
+  /* 无侧边栏时的样式（登录页面） */
+  .main-content:not(.with-sidebar) {
+    margin-left: 0;
+    min-height: 100vh;
+  }
+
+  /* 响应式设计 */
   @media (max-width: 768px) {
-    .navbar {
-      padding: 1rem;
-      flex-direction: column;
-      gap: 1rem;
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
     }
 
-    .nav-links {
-      flex-direction: column;
-      gap: 1rem;
+    .sidebar.show {
+      transform: translateX(0);
     }
 
-    .user-info {
-      flex-direction: column;
-      gap: 0.5rem;
+    .main-content.with-sidebar {
+      margin-left: 0;
     }
+
+    .topbar {
+      display: block;
+    }
+
+    .app-container {
+      position: relative;
+    }
+
+    /* 移动端遮罩 */
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      display: none;
+    }
+
+    .sidebar-overlay.show {
+      display: block;
+    }
+  }
+
+  /* 滚动条样式 */
+  .nav-menu::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .nav-menu::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .nav-menu::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2);
+    border-radius: 2px;
+  }
+
+  .nav-menu::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.3);
   }
 </style>
 
