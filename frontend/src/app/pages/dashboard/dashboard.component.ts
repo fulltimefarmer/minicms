@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService, LoginResponse } from './auth.service';
+import { AuthService, LoginResponse } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -220,7 +220,7 @@ export class DashboardComponent implements OnInit {
     this.currentUser = this.authService.currentUserValue;
     
     // 监听用户状态变化
-    this.authService.currentUser.subscribe(user => {
+    this.authService.currentUser.subscribe((user: LoginResponse | null) => {
       this.currentUser = user;
       if (!user) {
         this.router.navigate(['/login']);

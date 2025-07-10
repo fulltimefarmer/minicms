@@ -2,7 +2,7 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService, LoginRequest } from './auth.service';
+import { AuthService, LoginRequest } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -161,7 +161,7 @@ export class LoginComponent {
     };
 
     this.authService.login(loginRequest).subscribe({
-      next: (response) => {
+      next: (response: any) => {
         this.loginError = false;
         console.log('登录成功:', response);
         
@@ -169,7 +169,7 @@ export class LoginComponent {
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
         this.router.navigate([returnUrl]);
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('登录失败:', error);
         this.loginError = true;
       }
