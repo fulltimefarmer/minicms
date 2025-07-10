@@ -10,89 +10,125 @@ import { AuthService, LoginRequest } from './auth.service';
   imports: [CommonModule, FormsModule],
   template: `
     <div class="login-container">
-      <h2>登录</h2>
-      <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
-        <div>
-          <label for="username">用户名</label>
-          <input id="username" name="username" [(ngModel)]="username" required />
-        </div>
-        <div>
-          <label for="password">密码</label>
-          <input id="password" name="password" type="password" [(ngModel)]="password" required />
-        </div>
-        <button type="submit" [disabled]="!loginForm.form.valid">登录</button>
-      </form>
-      <div *ngIf="loginError" class="error">用户名或密码错误</div>
+      <div class="login-card">
+        <h2>登录</h2>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="username">用户名</label>
+            <input id="username" name="username" [(ngModel)]="username" required />
+          </div>
+          <div class="form-group">
+            <label for="password">密码</label>
+            <input id="password" name="password" type="password" [(ngModel)]="password" required />
+          </div>
+          <button type="submit" [disabled]="!loginForm.form.valid">登录</button>
+        </form>
+        <div *ngIf="loginError" class="error">用户名或密码错误</div>
+      </div>
     </div>
   `,
   styles: [`
-    :host {
+    .login-container {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    }
-    .login-container {
-      max-width: 350px;
-      width: 100%;
       padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
+    
+    .login-card {
+      max-width: 400px;
+      width: 100%;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
       background: #fff;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.5rem;
     }
+    
     h2 {
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin: 0 0 1rem 0;
       color: #333;
-      font-weight: 500;
+      font-weight: 600;
+      font-size: 1.8rem;
     }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
     label { 
-      display: block; 
-      margin-bottom: 0.5rem; 
       color: #555;
       font-weight: 500;
+      font-size: 0.9rem;
     }
+    
     input { 
       width: 100%; 
-      padding: 0.75rem; 
-      margin-bottom: 1rem; 
+      padding: 0.875rem; 
       border: 1px solid #ddd;
-      border-radius: 4px;
+      border-radius: 6px;
       font-size: 1rem;
       box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
+    
     input:focus {
       outline: none;
       border-color: #1976d2;
-      box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+      box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
     }
+    
     button { 
       width: 100%; 
-      padding: 0.75rem; 
+      padding: 0.875rem; 
       background: #1976d2; 
       color: #fff; 
       border: none; 
-      border-radius: 4px; 
+      border-radius: 6px; 
       font-size: 1rem; 
+      font-weight: 500;
       cursor: pointer;
-      transition: background-color 0.2s;
+      transition: background-color 0.2s, transform 0.1s;
+      margin-top: 0.5rem;
     }
-    button:hover {
+    
+    button:hover:not(:disabled) {
       background: #1565c0;
+      transform: translateY(-1px);
     }
+    
     button:disabled {
       background: #ccc;
       cursor: not-allowed;
+      transform: none;
     }
+    
     .error { 
       color: #d32f2f; 
-      margin-top: 1rem; 
       text-align: center;
       font-size: 0.9rem;
+      padding: 0.75rem;
+      background: #ffebee;
+      border-radius: 4px;
+      border: 1px solid #ffcdd2;
+    }
+    
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 1rem;
+      }
+      
+      .login-card {
+        padding: 2rem;
+      }
     }
   `]
 })
