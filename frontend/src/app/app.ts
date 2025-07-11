@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { AuthService } from './services/auth.service';
@@ -32,7 +32,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit() {
@@ -43,10 +44,12 @@ export class AppComponent implements OnInit {
       this.currentRoute = event.url;
     });
 
-    // 检查本地存储中的侧边栏状态
-    const sidebarState = localStorage.getItem('sidebarCollapsed');
-    if (sidebarState) {
-      this.sidebarCollapsed = JSON.parse(sidebarState);
+    // 检查本地存储中的侧边栏状态 (only in browser)
+    if (isPlatformBrowser(this.platformId)) {
+      const sidebarState = localStorage.getItem('sidebarCollapsed');
+      if (sidebarState) {
+        this.sidebarCollapsed = JSON.parse(sidebarState);
+      }
     }
   }
 
@@ -61,8 +64,10 @@ export class AppComponent implements OnInit {
 
   toggleSidebar() {
     this.sidebarCollapsed = !this.sidebarCollapsed;
-    // 保存侧边栏状态到本地存储
-    localStorage.setItem('sidebarCollapsed', JSON.stringify(this.sidebarCollapsed));
+    // 保存侧边栏状态到本地存储 (only in browser)
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('sidebarCollapsed', JSON.stringify(this.sidebarCollapsed));
+    }
   }
 
   getPageTitle(): string {
