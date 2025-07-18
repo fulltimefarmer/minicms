@@ -71,16 +71,124 @@ function generateTodos() {
     '分析系统性能瓶颈并优化'
   ];
 
-  return Array.from({ length: 25 }, (_, i) => ({
-    id: i + 1,
-    title: titles[i] || `任务 ${i + 1}`,
-    description: descriptions[i] || `这是任务 ${i + 1} 的详细描述`,
+  // 为admin用户创建特定的待办事项
+  const adminTodos = [
+    {
+      id: 1,
+      title: '审核本周系统权限变更',
+      description: '检查并审核本周提交的所有系统权限变更请求，确保符合安全策略',
+      completed: false,
+      priority: 'HIGH',
+      dueDate: new Date(new Date().setDate(new Date().getDate() + 2)).toISOString(), // 两天后到期
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 1)).toISOString(), // 昨天创建
+      updatedAt: new Date().toISOString() // 今天更新
+    },
+    {
+      id: 2,
+      title: '完成新员工账号配置',
+      description: '为下周入职的5名新员工创建账号并分配适当的系统权限',
+      completed: false,
+      priority: 'MEDIUM',
+      dueDate: new Date(new Date().setDate(new Date().getDate() + 3)).toISOString(), // 三天后到期
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 2)).toISOString(), // 两天前创建
+      updatedAt: new Date().toISOString() // 今天更新
+    },
+    {
+      id: 3,
+      title: '系统安全漏洞修复',
+      description: '修复安全团队上周报告的三个高危安全漏洞',
+      completed: false,
+      priority: 'HIGH',
+      dueDate: new Date(new Date().setDate(new Date().getDate() + 1)).toISOString(), // 明天到期
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 3)).toISOString(), // 三天前创建
+      updatedAt: new Date().toISOString() // 今天更新
+    },
+    {
+      id: 4,
+      title: '更新系统备份策略',
+      description: '根据新的数据保护要求，更新系统备份策略和恢复流程',
+      completed: true,
+      priority: 'MEDIUM',
+      dueDate: new Date(new Date().setDate(new Date().getDate() - 1)).toISOString(), // 昨天到期
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 5)).toISOString(), // 五天前创建
+      updatedAt: new Date().toISOString() // 今天更新
+    },
+    {
+      id: 5,
+      title: '准备月度系统报告',
+      description: '收集系统使用数据，准备本月系统性能和安全报告',
+      completed: false,
+      priority: 'LOW',
+      dueDate: new Date(new Date().setDate(new Date().getDate() + 5)).toISOString(), // 五天后到期
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 1)).toISOString(), // 昨天创建
+      updatedAt: new Date().toISOString() // 今天更新
+    },
+    {
+      id: 6,
+      title: '审核部门资源申请',
+      description: '审核并批准各部门提交的系统资源申请',
+      completed: false,
+      priority: 'MEDIUM',
+      dueDate: new Date(new Date().setDate(new Date().getDate() + 2)).toISOString(), // 两天后到期
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 2)).toISOString(), // 两天前创建
+      updatedAt: new Date().toISOString() // 今天更新
+    },
+    {
+      id: 7,
+      title: '更新系统文档',
+      description: '更新管理员手册和用户指南，反映最新的系统变更',
+      completed: false,
+      priority: 'LOW',
+      dueDate: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString(), // 一周后到期
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 1)).toISOString(), // 昨天创建
+      updatedAt: new Date().toISOString() // 今天更新
+    },
+    {
+      id: 8,
+      title: '系统性能优化',
+      description: '分析系统性能瓶颈，实施优化措施提高响应速度',
+      completed: false,
+      priority: 'HIGH',
+      dueDate: new Date(new Date().setDate(new Date().getDate() + 4)).toISOString(), // 四天后到期
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 3)).toISOString(), // 三天前创建
+      updatedAt: new Date().toISOString() // 今天更新
+    },
+    {
+      id: 9,
+      title: '配置新服务器',
+      description: '为新上线的应用配置服务器环境和安全设置',
+      completed: true,
+      priority: 'MEDIUM',
+      dueDate: new Date(new Date().setDate(new Date().getDate() - 2)).toISOString(), // 两天前到期
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 7)).toISOString(), // 一周前创建
+      updatedAt: new Date(new Date().setDate(new Date().getDate() - 2)).toISOString() // 两天前更新
+    },
+    {
+      id: 10,
+      title: '用户权限审计',
+      description: '对所有系统用户进行权限审计，确保符合最小权限原则',
+      completed: false,
+      priority: 'HIGH',
+      dueDate: new Date(new Date().setDate(new Date().getDate() + 3)).toISOString(), // 三天后到期
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 2)).toISOString(), // 两天前创建
+      updatedAt: new Date().toISOString() // 今天更新
+    }
+  ];
+
+  // 生成其他待办事项
+  const otherTodos = Array.from({ length: 15 }, (_, i) => ({
+    id: i + 11, // ID从11开始
+    title: titles[i] || `任务 ${i + 11}`,
+    description: descriptions[i] || `这是任务 ${i + 11} 的详细描述`,
     completed: Math.random() > 0.5,
     priority: randomChoice(priorities),
     dueDate: randomFutureDate(),
     createdAt: randomDate(),
     updatedAt: randomDate()
   }));
+
+  // 合并admin的待办事项和其他待办事项
+  return [...adminTodos, ...otherTodos];
 }
 
 // 生成用户数据
@@ -238,11 +346,33 @@ function generateDepartments() {
           status: 'active',
           createdAt: randomDate(),
           updatedAt: randomDate()
+        },
+        {
+          id: 4,
+          name: '测试组',
+          code: 'testing',
+          description: '测试与质量保障团队',
+          parentId: 1,
+          sort: 3,
+          status: 'active',
+          createdAt: randomDate(),
+          updatedAt: randomDate()
+        },
+        {
+          id: 5,
+          name: '运维组',
+          code: 'devops',
+          description: '系统运维与部署团队',
+          parentId: 1,
+          sort: 4,
+          status: 'active',
+          createdAt: randomDate(),
+          updatedAt: randomDate()
         }
       ]
     },
     {
-      id: 4,
+      id: 6,
       name: '产品部',
       code: 'product',
       description: '产品设计部门',
@@ -253,12 +383,34 @@ function generateDepartments() {
       updatedAt: randomDate(),
       children: [
         {
-          id: 5,
+          id: 7,
           name: 'UI设计组',
           code: 'ui',
           description: 'UI设计团队',
-          parentId: 4,
+          parentId: 6,
           sort: 1,
+          status: 'active',
+          createdAt: randomDate(),
+          updatedAt: randomDate()
+        },
+        {
+          id: 8,
+          name: '用户体验组',
+          code: 'ux',
+          description: '用户体验研究团队',
+          parentId: 6,
+          sort: 2,
+          status: 'active',
+          createdAt: randomDate(),
+          updatedAt: randomDate()
+        },
+        {
+          id: 9,
+          name: '产品规划组',
+          code: 'planning',
+          description: '产品规划与路线图团队',
+          parentId: 6,
+          sort: 3,
           status: 'active',
           createdAt: randomDate(),
           updatedAt: randomDate()
@@ -266,12 +418,82 @@ function generateDepartments() {
       ]
     },
     {
-      id: 6,
+      id: 10,
       name: '运营部',
       code: 'operations',
       description: '运营推广部门',
       parentId: null,
       sort: 3,
+      status: 'active',
+      createdAt: randomDate(),
+      updatedAt: randomDate(),
+      children: [
+        {
+          id: 11,
+          name: '市场营销组',
+          code: 'marketing',
+          description: '市场营销与推广团队',
+          parentId: 10,
+          sort: 1,
+          status: 'active',
+          createdAt: randomDate(),
+          updatedAt: randomDate()
+        },
+        {
+          id: 12,
+          name: '用户运营组',
+          code: 'user-ops',
+          description: '用户运营与活动策划团队',
+          parentId: 10,
+          sort: 2,
+          status: 'active',
+          createdAt: randomDate(),
+          updatedAt: randomDate()
+        }
+      ]
+    },
+    {
+      id: 13,
+      name: '人力资源部',
+      code: 'hr',
+      description: '人力资源管理部门',
+      parentId: null,
+      sort: 4,
+      status: 'active',
+      createdAt: randomDate(),
+      updatedAt: randomDate(),
+      children: [
+        {
+          id: 14,
+          name: '招聘组',
+          code: 'recruitment',
+          description: '人才招聘团队',
+          parentId: 13,
+          sort: 1,
+          status: 'active',
+          createdAt: randomDate(),
+          updatedAt: randomDate()
+        },
+        {
+          id: 15,
+          name: '培训发展组',
+          code: 'training',
+          description: '员工培训与发展团队',
+          parentId: 13,
+          sort: 2,
+          status: 'active',
+          createdAt: randomDate(),
+          updatedAt: randomDate()
+        }
+      ]
+    },
+    {
+      id: 16,
+      name: '财务部',
+      code: 'finance',
+      description: '财务管理部门',
+      parentId: null,
+      sort: 5,
       status: 'active',
       createdAt: randomDate(),
       updatedAt: randomDate()
@@ -281,24 +503,141 @@ function generateDepartments() {
 
 // 生成资产数据
 function generateAssets() {
-  const assetTypes = ['computer', 'monitor', 'printer'];
+  // 定义更多资产类型和品牌
+  const assetTypes = ['computer', 'monitor', 'printer', 'server', 'network', 'mobile', 'tablet', 'projector', 'camera'];
   const statuses = ['available', 'assigned', 'maintenance', 'retired'];
+  const brands = ['Dell', 'HP', 'Lenovo', 'Apple', 'Samsung', 'Cisco', 'Huawei', 'Canon', 'Epson'];
   
-  return Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    name: `资产设备${i + 1}`,
-    type: randomChoice(assetTypes),
-    serialNumber: `SN${String(i + 1).padStart(6, '0')}`,
-    model: `Model-${randomChoice(['A', 'B', 'C'])}${i + 1}`,
-    status: randomChoice(statuses),
-    assignedUserId: Math.random() > 0.5 ? Math.floor(Math.random() * 8) + 1 : null,
-    purchaseDate: randomDate(),
-    warrantyExpiry: randomFutureDate(),
-    price: Math.floor(Math.random() * 10000) + 1000,
-    description: `这是资产设备${i + 1}的详细描述`,
-    createdAt: randomDate(),
-    updatedAt: randomDate()
-  }));
+  // 预定义一些特定资产
+  const specificAssets = [
+    {
+      id: 1,
+      name: '开发服务器',
+      type: 'server',
+      serialNumber: 'SRV20240001',
+      model: 'Dell PowerEdge R740',
+      status: 'available',
+      assignedUserId: null,
+      purchaseDate: new Date(2024, 1, 15).toISOString(),
+      warrantyExpiry: new Date(2027, 1, 15).toISOString(),
+      price: 45000,
+      description: '主要开发环境服务器，配置：64GB RAM, 8TB存储, Intel Xeon处理器',
+      createdAt: new Date(2024, 1, 16).toISOString(),
+      updatedAt: new Date(2024, 1, 16).toISOString()
+    },
+    {
+      id: 2,
+      name: '测试服务器',
+      type: 'server',
+      serialNumber: 'SRV20240002',
+      model: 'HP ProLiant DL380',
+      status: 'available',
+      assignedUserId: null,
+      purchaseDate: new Date(2024, 1, 15).toISOString(),
+      warrantyExpiry: new Date(2027, 1, 15).toISOString(),
+      price: 38000,
+      description: '测试环境服务器，配置：32GB RAM, 4TB存储, Intel Xeon处理器',
+      createdAt: new Date(2024, 1, 16).toISOString(),
+      updatedAt: new Date(2024, 1, 16).toISOString()
+    },
+    {
+      id: 3,
+      name: '核心交换机',
+      type: 'network',
+      serialNumber: 'NET20240001',
+      model: 'Cisco Catalyst 9300',
+      status: 'available',
+      assignedUserId: null,
+      purchaseDate: new Date(2024, 0, 10).toISOString(),
+      warrantyExpiry: new Date(2029, 0, 10).toISOString(),
+      price: 25000,
+      description: '数据中心核心交换机，48端口千兆，4个10G上行端口',
+      createdAt: new Date(2024, 0, 11).toISOString(),
+      updatedAt: new Date(2024, 0, 11).toISOString()
+    },
+    {
+      id: 4,
+      name: '防火墙',
+      type: 'network',
+      serialNumber: 'NET20240002',
+      model: 'Fortinet FortiGate 100F',
+      status: 'available',
+      assignedUserId: null,
+      purchaseDate: new Date(2024, 0, 10).toISOString(),
+      warrantyExpiry: new Date(2029, 0, 10).toISOString(),
+      price: 18000,
+      description: '企业级防火墙，支持VPN、入侵防护、Web过滤等功能',
+      createdAt: new Date(2024, 0, 11).toISOString(),
+      updatedAt: new Date(2024, 0, 11).toISOString()
+    },
+    {
+      id: 5,
+      name: '会议室投影仪',
+      type: 'projector',
+      serialNumber: 'PRJ20240001',
+      model: 'Epson EB-2250U',
+      status: 'available',
+      assignedUserId: null,
+      purchaseDate: new Date(2024, 2, 5).toISOString(),
+      warrantyExpiry: new Date(2026, 2, 5).toISOString(),
+      price: 6500,
+      description: '大会议室投影仪，5000流明，WUXGA分辨率',
+      createdAt: new Date(2024, 2, 6).toISOString(),
+      updatedAt: new Date(2024, 2, 6).toISOString()
+    }
+  ];
+  
+  // 生成其他随机资产
+  const randomAssets = Array.from({ length: 25 }, (_, i) => {
+    const type = randomChoice(assetTypes);
+    const brand = randomChoice(brands);
+    let name, model;
+    
+    switch(type) {
+      case 'computer':
+        name = `${brand} 笔记本电脑`;
+        model = `${brand} ${['ThinkPad', 'Latitude', 'EliteBook', 'MacBook Pro', 'XPS'][Math.floor(Math.random() * 5)]} ${new Date().getFullYear()}`;
+        break;
+      case 'monitor':
+        name = `${brand} 显示器`;
+        model = `${brand} ${['P2419H', 'U2720Q', 'S2721QS', 'ProDisplay', 'UltraSharp'][Math.floor(Math.random() * 5)]}`;
+        break;
+      case 'printer':
+        name = `${brand} 打印机`;
+        model = `${brand} ${['LaserJet', 'OfficeJet', 'EcoTank', 'PIXMA', 'WorkForce'][Math.floor(Math.random() * 5)]} ${Math.floor(Math.random() * 9000) + 1000}`;
+        break;
+      case 'mobile':
+        name = `${brand} 手机`;
+        model = `${brand} ${['Galaxy', 'iPhone', 'Mate', 'P40', 'Mi'][Math.floor(Math.random() * 5)]} ${Math.floor(Math.random() * 20) + 10}`;
+        break;
+      case 'tablet':
+        name = `${brand} 平板电脑`;
+        model = `${brand} ${['iPad', 'Galaxy Tab', 'MatePad', 'Surface', 'Mi Pad'][Math.floor(Math.random() * 5)]} ${Math.floor(Math.random() * 10) + 1}`;
+        break;
+      default:
+        name = `${brand} ${type}`;
+        model = `${brand} ${type.charAt(0).toUpperCase() + type.slice(1)} ${Math.floor(Math.random() * 900) + 100}`;
+    }
+    
+    return {
+      id: i + specificAssets.length + 1,
+      name: name,
+      type: type,
+      serialNumber: `${type.substring(0, 3).toUpperCase()}${String(i + 1).padStart(6, '0')}`,
+      model: model,
+      status: randomChoice(statuses),
+      assignedUserId: Math.random() > 0.5 ? Math.floor(Math.random() * 8) + 1 : null,
+      purchaseDate: randomDate(),
+      warrantyExpiry: randomFutureDate(),
+      price: Math.floor(Math.random() * 15000) + 1000,
+      description: `${brand} ${type}设备，用于${['办公', '开发', '测试', '会议', '演示'][Math.floor(Math.random() * 5)]}`,
+      createdAt: randomDate(),
+      updatedAt: randomDate()
+    };
+  });
+  
+  // 合并特定资产和随机资产
+  return [...specificAssets, ...randomAssets];
 }
 
 // 生成完整的数据库

@@ -223,21 +223,7 @@ interface Department {
         </div>
       </div>
 
-      <!-- 统计信息 -->
-      <div class="stats">
-        <div class="stat-item">
-          <h4>{{ getTotalUsers() }}</h4>
-          <p>总用户数</p>
-        </div>
-        <div class="stat-item">
-          <h4>{{ getActiveUsers() }}</h4>
-          <p>激活用户</p>
-        </div>
-        <div class="stat-item">
-          <h4>{{ getInactiveUsers() }}</h4>
-          <p>停用用户</p>
-        </div>
-      </div>
+      <!-- 统计信息已移除 -->
     </div>
   `,
   styles: [`

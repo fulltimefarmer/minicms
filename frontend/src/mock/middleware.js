@@ -197,6 +197,127 @@ module.exports = (req, res, next) => {
       }
     });
   }
+  
+  // 模拟获取所有待办事项
+  if (req.path.includes('/todos/all')) {
+    const fs = require('fs');
+    const path = require('path');
+    const dbPath = path.join(__dirname, 'db.json');
+    
+    try {
+      const db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+      return res.json({
+        success: true,
+        message: '获取待办事项成功',
+        data: db.todos
+      });
+    } catch (e) {
+      console.error('读取待办事项数据失败:', e);
+      return res.status(500).json({
+        success: false,
+        message: '获取待办事项失败',
+        data: []
+      });
+    }
+  }
+  
+  // 模拟部门树结构
+  if (req.path.includes('/departments/tree')) {
+    const fs = require('fs');
+    const path = require('path');
+    const dbPath = path.join(__dirname, 'db.json');
+    
+    try {
+      const db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+      
+      // 确保部门数据包含必要的字段
+      const enhancedDepartments = db.departments.map(dept => {
+        // 添加必要的字段
+        const enhancedDept = {
+          ...dept,
+          path: dept.path || `/${dept.code}`,
+          level: dept.level || (dept.parentId ? 2 : 1),
+          enabled: dept.enabled !== undefined ? dept.enabled : true
+        };
+        
+        // 处理子部门
+        if (enhancedDept.children && Array.isArray(enhancedDept.children)) {
+          enhancedDept.children = enhancedDept.children.map(child => ({
+            ...child,
+            path: child.path || `/${dept.code}/${child.code}`,
+            level: child.level || (child.parentId ? 2 : 1),
+            enabled: child.enabled !== undefined ? child.enabled : true
+          }));
+        }
+        
+        return enhancedDept;
+      });
+      
+      console.log('返回部门树数据:', JSON.stringify(enhancedDepartments).substring(0, 200) + '...');
+      
+      return res.json({
+        success: true,
+        message: '获取部门树成功',
+        data: enhancedDepartments
+      });
+    } catch (e) {
+      console.error('读取部门数据失败:', e);
+      return res.status(500).json({
+        success: false,
+        message: '获取部门树失败',
+        data: []
+      });
+    }
+  }
+  
+  // 处理普通部门列表请求
+  if (req.path === '/departments' || req.path === '/api/departments') {
+    const fs = require('fs');
+    const path = require('path');
+    const dbPath = path.join(__dirname, 'db.json');
+    
+    try {
+      const db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+      // 扁平化部门列表
+      let flatDepartments = [];
+      
+      const flattenDepts = (depts, parentPath = '') => {
+        depts.forEach(dept => {
+          const deptPath = parentPath ? `${parentPath}/${dept.code}` : `/${dept.code}`;
+          const flatDept = {
+            ...dept,
+            path: dept.path || deptPath,
+            level: dept.level || (dept.parentId ? 2 : 1),
+            enabled: dept.enabled !== undefined ? dept.enabled : true
+          };
+          
+          // 删除children字段，因为扁平列表不需要
+          const { children, ...deptWithoutChildren } = flatDept;
+          flatDepartments.push(deptWithoutChildren);
+          
+          // 递归处理子部门
+          if (children && Array.isArray(children)) {
+            flattenDepts(children, deptPath);
+          }
+        });
+      };
+      
+      flattenDepts(db.departments);
+      
+      return res.json({
+        success: true,
+        message: '获取部门列表成功',
+        data: flatDepartments
+      });
+    } catch (e) {
+      console.error('读取部门数据失败:', e);
+      return res.status(500).json({
+        success: false,
+        message: '获取部门列表失败',
+        data: []
+      });
+    }
+  }
 
   // 包装所有其他响应为标准API格式
   const originalSend = res.send;

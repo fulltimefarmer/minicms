@@ -20,6 +20,6 @@ export const routes: Routes = [
   { path: 'permission-management', component: PermissionManagementComponent, canActivate: [AuthGuard] },
   { path: 'dict-types', component: DictTypeManagementComponent, canActivate: [AuthGuard] },
   { path: 'dict-items', component: DictItemManagementComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: 'todos', pathMatch: 'full' }, // 默认显示待办事项
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // 默认显示首页
   { path: '**', redirectTo: 'login' }
 ];

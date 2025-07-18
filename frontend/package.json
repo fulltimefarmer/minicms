@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:frontend-app": "node dist/frontend-app/server/server.mjs",
+    "mock:generate": "node src/mock/generate-data.js",
     "mock": "node src/mock/generate-data.js && concurrently \"json-server --watch src/mock/db.json --port 3001 --routes src/mock/routes.json --middlewares src/mock/middleware.js --no-cors\" \"ng serve --configuration=mock --proxy-config proxy.conf.json\""
   },
   "prettier": {

@@ -4,6 +4,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { AuthService } from './services/auth.service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
   // 页面标题映射
   private pageTitles: { [key: string]: string } = {
     '/todos': '待办事项',
-    '/dashboard': '仪表板',
+    '/dashboard': '首页',
     '/users': '用户管理',
     '/departments': '部门管理',
     '/assets': '资产管理',
@@ -58,7 +59,8 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
+    // 简化版本：直接清除用户数据并导航到登录页面
+    this.authService.clearUserData();
     this.router.navigate(['/login']);
   }
 
