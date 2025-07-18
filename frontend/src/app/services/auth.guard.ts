@@ -1,3 +1,5 @@
+// 此文件为路由守卫服务，负责判断用户是否有权限访问受保护的路由。
+// 检查用户登录状态和token有效性，未登录时自动跳转到登录页。
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';

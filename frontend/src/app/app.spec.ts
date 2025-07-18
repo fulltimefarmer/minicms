@@ -1,3 +1,4 @@
+// 此文件为主组件的单元测试文件，测试App组件的创建和标题渲染。
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
