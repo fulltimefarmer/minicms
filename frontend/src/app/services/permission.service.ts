@@ -1,3 +1,5 @@
+// 此文件为权限管理服务，负责管理用户、角色、权限的增删改查及权限校验等核心逻辑。
+// 提供用户、角色、权限的本地模拟数据和相关操作方法，供全局依赖注入使用。
 import { Injectable } from '@angular/core';
 
 export interface User {

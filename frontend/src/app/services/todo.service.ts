@@ -1,3 +1,5 @@
+// 此文件为待办事项服务，负责与后端API交互，实现待办事项的增删改查、状态变更等功能。
+// 提供本地mock数据和分页、搜索、统计等扩展方法，供全局依赖注入使用。
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
