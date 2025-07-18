@@ -1,3 +1,5 @@
+// 此文件为Angular应用的主组件，负责应用的整体结构、路由监听、侧边栏状态管理等。
+// 包含页面标题映射、用户登出、侧边栏折叠等核心逻辑。
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
@@ -14,10 +16,6 @@ import { environment } from '../environments/environment';
   styleUrl: './app.scss'
 })
 export class AppComponent implements OnInit {
-  title = 'frontend-app';
-  sidebarCollapsed = false;
-  currentRoute = '';
-  
   // 页面标题映射
   private pageTitles: { [key: string]: string } = {
     '/todos': '待办事项',

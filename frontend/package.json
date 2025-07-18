@@ -1,29 +1,31 @@
+// 此文件为Node.js项目的包管理配置文件，定义了依赖、脚本、元数据等。
+// 主要用于管理项目依赖、脚本命令和开发工具。
 {
-  "name": "frontend-app",
-  "version": "0.0.0",
+  "name": "frontend-app", // 项目名称
+  "version": "0.0.0", // 项目版本
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:frontend-app": "node dist/frontend-app/server/server.mjs",
-    "mock:generate": "node src/mock/generate-data.js",
-    "mock": "node src/mock/generate-data.js && concurrently \"json-server --watch src/mock/db.json --port 3001 --routes src/mock/routes.json --middlewares src/mock/middleware.js --no-cors\" \"ng serve --configuration=mock --proxy-config proxy.conf.json\""
+    "ng": "ng", // Angular CLI命令
+    "start": "ng serve", // 启动开发服务器
+    "build": "ng build", // 构建项目
+    "watch": "ng build --watch --configuration development", // 监听模式构建
+    "test": "ng test", // 运行单元测试
+    "serve:ssr:frontend-app": "node dist/frontend-app/server/server.mjs", // 启动SSR服务
+    "mock:generate": "node src/mock/generate-data.js", // 生成mock数据
+    "mock": "node src/mock/generate-data.js && concurrently \"json-server --watch src/mock/db.json --port 3001 --routes src/mock/routes.json --middlewares src/mock/middleware.js --no-cors\" \"ng serve --configuration=mock --proxy-config proxy.conf.json\"" // 启动mock服务和前端
   },
   "prettier": {
     "overrides": [
       {
         "files": "*.html",
         "options": {
-          "parser": "angular"
+          "parser": "angular" // 针对HTML文件使用Angular解析器
         }
       }
     ]
   },
-  "private": true,
+  "private": true, // 私有项目，禁止发布到npm
   "dependencies": {
-    "@angular/common": "^20.0.0",
+    "@angular/common": "^20.0.0", // Angular核心依赖
     "@angular/compiler": "^20.0.0",
     "@angular/core": "^20.0.0",
     "@angular/forms": "^20.0.0",
@@ -31,26 +33,26 @@
     "@angular/platform-server": "^20.0.0",
     "@angular/router": "^20.0.0",
     "@angular/ssr": "^20.0.5",
-    "express": "^5.1.0",
+    "express": "^5.1.0", // SSR服务依赖
     "ng": "^0.0.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
+    "rxjs": "~7.8.0", // 响应式编程库
+    "tslib": "^2.3.0" // TypeScript运行时库
   },
   "devDependencies": {
-    "@angular/build": "^20.0.5",
-    "@angular/cli": "^20.0.5",
+    "@angular/build": "^20.0.5", // 构建工具
+    "@angular/cli": "^20.0.5", // Angular CLI
     "@angular/compiler-cli": "^20.0.0",
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
-    "concurrently": "^8.2.2",
-    "jasmine-core": "~5.7.0",
-    "json-server": "^0.17.4",
-    "karma": "~6.4.0",
+    "concurrently": "^8.2.2", // 并发运行工具
+    "jasmine-core": "~5.7.0", // 测试框架
+    "json-server": "^0.17.4", // mock数据服务器
+    "karma": "~6.4.0", // 测试运行器
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.8.2"
+    "typescript": "~5.8.2" // TypeScript编译器
   }
 }
