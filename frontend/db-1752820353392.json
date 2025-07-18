@@ -10,160 +10,160 @@
       "title": "完成项目需求分析",
       "description": "与客户确认项目需求，整理需求文档",
       "completed": false,
-      "priority": "HIGH",
-      "dueDate": "2025-11-27T01:37:57.661Z",
-      "createdAt": "2025-02-05T21:09:34.192Z",
-      "updatedAt": "2024-11-03T17:39:06.804Z"
+      "priority": "MEDIUM",
+      "dueDate": "2025-10-05T07:35:13.013Z",
+      "createdAt": "2025-05-23T16:07:31.721Z",
+      "updatedAt": "2025-05-31T06:45:51.704Z"
     },
     {
       "id": 2,
       "title": "设计系统架构",
       "description": "设计可扩展的系统架构方案",
       "completed": false,
-      "priority": "LOW",
-      "dueDate": "2025-07-22T16:32:07.494Z",
-      "createdAt": "2024-09-10T02:54:22.964Z",
-      "updatedAt": "2024-07-14T09:21:47.190Z"
+      "priority": "MEDIUM",
+      "dueDate": "2025-10-10T22:15:13.336Z",
+      "createdAt": "2024-11-28T20:59:45.136Z",
+      "updatedAt": "2024-12-09T08:45:57.061Z"
     },
     {
       "id": 3,
       "title": "编写用户手册",
       "description": "编写详细的用户操作指南",
-      "completed": false,
+      "completed": true,
       "priority": "MEDIUM",
-      "dueDate": "2025-12-17T22:18:25.461Z",
-      "createdAt": "2024-08-16T23:48:55.675Z",
-      "updatedAt": "2025-06-03T16:08:11.152Z"
+      "dueDate": "2025-10-30T11:48:26.810Z",
+      "createdAt": "2025-02-08T10:49:13.847Z",
+      "updatedAt": "2024-04-30T19:59:05.134Z"
     },
     {
       "id": 4,
       "title": "进行系统测试",
       "description": "执行完整的系统功能测试",
-      "completed": true,
+      "completed": false,
       "priority": "LOW",
-      "dueDate": "2025-11-18T18:23:33.340Z",
-      "createdAt": "2025-02-15T22:46:20.727Z",
-      "updatedAt": "2024-06-14T04:44:53.562Z"
+      "dueDate": "2025-11-10T07:55:25.057Z",
+      "createdAt": "2024-03-07T20:32:25.972Z",
+      "updatedAt": "2025-07-10T23:48:10.463Z"
     },
     {
       "id": 5,
       "title": "优化数据库性能",
       "description": "分析并优化数据库查询性能",
       "completed": true,
-      "priority": "LOW",
-      "dueDate": "2025-09-22T07:47:55.731Z",
-      "createdAt": "2024-08-18T05:02:22.527Z",
-      "updatedAt": "2024-07-10T08:53:31.270Z"
+      "priority": "MEDIUM",
+      "dueDate": "2025-09-03T17:42:38.021Z",
+      "createdAt": "2024-03-12T14:44:58.364Z",
+      "updatedAt": "2025-02-13T00:22:09.307Z"
     },
     {
       "id": 6,
       "title": "实施安全审计",
       "description": "检查系统安全漏洞和风险",
       "completed": true,
-      "priority": "LOW",
-      "dueDate": "2025-09-20T06:30:19.574Z",
-      "createdAt": "2024-05-30T14:13:27.662Z",
-      "updatedAt": "2024-08-05T17:13:50.733Z"
+      "priority": "HIGH",
+      "dueDate": "2025-07-29T02:05:08.839Z",
+      "createdAt": "2025-06-18T13:23:08.917Z",
+      "updatedAt": "2025-06-18T11:25:52.406Z"
     },
     {
       "id": 7,
       "title": "更新API文档",
       "description": "更新API接口说明文档",
-      "completed": false,
-      "priority": "MEDIUM",
-      "dueDate": "2025-12-15T10:05:14.529Z",
-      "createdAt": "2024-11-09T03:47:20.472Z",
-      "updatedAt": "2024-01-29T00:38:49.546Z"
+      "completed": true,
+      "priority": "HIGH",
+      "dueDate": "2025-09-25T06:45:43.480Z",
+      "createdAt": "2024-02-29T07:19:28.086Z",
+      "updatedAt": "2024-01-24T06:03:27.766Z"
     },
     {
       "id": 8,
       "title": "重构前端组件",
       "description": "重构老旧的前端组件代码",
       "completed": true,
-      "priority": "HIGH",
-      "dueDate": "2025-07-23T03:45:48.450Z",
-      "createdAt": "2024-10-06T14:59:12.194Z",
-      "updatedAt": "2025-06-30T19:14:22.580Z"
+      "priority": "LOW",
+      "dueDate": "2025-07-28T20:15:38.093Z",
+      "createdAt": "2024-12-16T15:58:46.852Z",
+      "updatedAt": "2025-05-05T13:07:21.548Z"
     },
     {
       "id": 9,
       "title": "集成第三方服务",
       "description": "集成支付、短信等第三方服务",
-      "completed": true,
+      "completed": false,
       "priority": "LOW",
-      "dueDate": "2025-12-19T09:38:31.748Z",
-      "createdAt": "2025-05-10T22:07:27.715Z",
-      "updatedAt": "2025-06-14T18:14:24.578Z"
+      "dueDate": "2025-12-22T22:50:52.109Z",
+      "createdAt": "2025-04-10T21:29:39.870Z",
+      "updatedAt": "2024-11-29T15:34:27.563Z"
     },
     {
       "id": 10,
       "title": "部署生产环境",
       "description": "配置并部署到生产服务器",
-      "completed": true,
+      "completed": false,
       "priority": "MEDIUM",
-      "dueDate": "2025-09-19T16:10:10.308Z",
-      "createdAt": "2025-01-01T17:47:15.597Z",
-      "updatedAt": "2025-06-07T01:57:10.198Z"
+      "dueDate": "2025-09-14T09:38:29.584Z",
+      "createdAt": "2025-02-22T13:43:27.170Z",
+      "updatedAt": "2025-07-15T10:43:44.232Z"
     },
     {
       "id": 11,
       "title": "修复用户反馈bug",
       "description": "根据用户反馈修复相关问题",
-      "completed": false,
-      "priority": "MEDIUM",
-      "dueDate": "2025-08-08T13:27:47.502Z",
-      "createdAt": "2024-12-30T14:10:08.337Z",
-      "updatedAt": "2024-09-29T20:36:02.833Z"
+      "completed": true,
+      "priority": "HIGH",
+      "dueDate": "2025-09-10T20:10:19.580Z",
+      "createdAt": "2025-03-12T21:04:55.666Z",
+      "updatedAt": "2024-08-23T13:18:44.486Z"
     },
     {
       "id": 12,
       "title": "实现新功能模块",
       "description": "开发新的业务功能模块",
       "completed": true,
-      "priority": "LOW",
-      "dueDate": "2025-09-20T17:57:51.661Z",
-      "createdAt": "2025-07-14T22:21:54.812Z",
-      "updatedAt": "2024-07-18T21:57:19.994Z"
+      "priority": "MEDIUM",
+      "dueDate": "2025-12-01T02:13:39.244Z",
+      "createdAt": "2025-04-17T14:46:10.701Z",
+      "updatedAt": "2025-03-12T10:41:52.951Z"
     },
     {
       "id": 13,
       "title": "进行代码评审",
       "description": "审查团队成员提交的代码",
       "completed": false,
-      "priority": "LOW",
-      "dueDate": "2025-08-16T16:04:20.348Z",
-      "createdAt": "2025-04-21T03:42:53.567Z",
-      "updatedAt": "2025-06-03T14:12:31.498Z"
+      "priority": "HIGH",
+      "dueDate": "2025-12-30T03:57:30.812Z",
+      "createdAt": "2024-01-31T23:40:31.510Z",
+      "updatedAt": "2024-07-31T01:18:02.164Z"
     },
     {
       "id": 14,
       "title": "优化用户界面",
       "description": "改进用户体验和界面设计",
       "completed": false,
-      "priority": "LOW",
-      "dueDate": "2025-11-16T12:39:15.243Z",
-      "createdAt": "2024-08-27T03:06:39.206Z",
-      "updatedAt": "2025-06-08T00:39:36.591Z"
+      "priority": "HIGH",
+      "dueDate": "2025-11-14T08:54:19.612Z",
+      "createdAt": "2024-12-07T16:04:48.322Z",
+      "updatedAt": "2024-03-19T16:16:49.423Z"
     },
     {
       "id": 15,
       "title": "配置监控系统",
       "description": "设置系统监控和告警机制",
-      "completed": false,
+      "completed": true,
       "priority": "MEDIUM",
-      "dueDate": "2025-07-24T20:41:22.266Z",
-      "createdAt": "2024-12-17T06:08:32.081Z",
-      "updatedAt": "2024-10-30T21:00:04.006Z"
+      "dueDate": "2025-10-17T06:29:45.232Z",
+      "createdAt": "2024-01-24T04:16:53.445Z",
+      "updatedAt": "2024-01-13T23:05:25.155Z"
     },
     {
       "id": 16,
       "title": "制定备份策略",
       "description": "制定数据备份和恢复策略",
-      "completed": false,
+      "completed": true,
       "priority": "MEDIUM",
-      "dueDate": "2025-12-15T22:27:40.381Z",
-      "createdAt": "2024-09-01T05:21:48.488Z",
-      "updatedAt": "2025-07-07T18:36:33.926Z"
+      "dueDate": "2025-09-11T18:03:28.667Z",
+      "createdAt": "2025-05-12T14:09:54.899Z",
+      "updatedAt": "2024-06-01T01:01:52.759Z"
     },
     {
       "id": 17,
@@ -171,89 +171,89 @@
       "description": "为新加入的团队成员提供培训",
       "completed": false,
       "priority": "MEDIUM",
-      "dueDate": "2025-12-12T05:08:42.316Z",
-      "createdAt": "2024-07-07T19:52:16.255Z",
-      "updatedAt": "2025-07-11T11:29:35.120Z"
+      "dueDate": "2025-10-11T16:22:19.448Z",
+      "createdAt": "2024-06-22T00:07:09.862Z",
+      "updatedAt": "2024-10-24T22:21:00.626Z"
     },
     {
       "id": 18,
       "title": "更新依赖包",
       "description": "升级项目依赖到最新版本",
       "completed": false,
-      "priority": "MEDIUM",
-      "dueDate": "2025-10-20T11:17:10.911Z",
-      "createdAt": "2025-01-11T06:59:00.613Z",
-      "updatedAt": "2024-05-31T17:23:38.180Z"
+      "priority": "LOW",
+      "dueDate": "2025-11-25T23:28:52.461Z",
+      "createdAt": "2024-10-31T08:21:02.429Z",
+      "updatedAt": "2025-01-09T08:15:23.317Z"
     },
     {
       "id": 19,
       "title": "编写单元测试",
       "description": "为核心功能编写测试用例",
-      "completed": true,
-      "priority": "LOW",
-      "dueDate": "2025-09-19T11:44:53.574Z",
-      "createdAt": "2025-05-28T20:44:48.592Z",
-      "updatedAt": "2024-11-29T12:36:04.420Z"
+      "completed": false,
+      "priority": "MEDIUM",
+      "dueDate": "2025-11-11T09:50:23.229Z",
+      "createdAt": "2025-05-19T16:54:45.523Z",
+      "updatedAt": "2025-04-07T16:30:33.054Z"
     },
     {
       "id": 20,
       "title": "性能优化分析",
       "description": "分析系统性能瓶颈并优化",
       "completed": false,
-      "priority": "HIGH",
-      "dueDate": "2025-09-01T11:02:27.512Z",
-      "createdAt": "2025-06-04T19:38:39.990Z",
-      "updatedAt": "2025-06-09T23:52:38.771Z"
+      "priority": "MEDIUM",
+      "dueDate": "2025-11-18T00:11:19.771Z",
+      "createdAt": "2024-10-05T11:09:11.492Z",
+      "updatedAt": "2024-11-13T01:07:13.764Z"
     },
     {
       "id": 21,
       "title": "任务 21",
       "description": "这是任务 21 的详细描述",
-      "completed": true,
-      "priority": "HIGH",
-      "dueDate": "2025-12-15T20:45:14.709Z",
-      "createdAt": "2024-07-14T03:24:51.151Z",
-      "updatedAt": "2025-04-02T02:17:32.139Z"
+      "completed": false,
+      "priority": "LOW",
+      "dueDate": "2025-12-23T22:37:17.107Z",
+      "createdAt": "2024-08-01T18:34:12.935Z",
+      "updatedAt": "2025-06-25T04:41:54.421Z"
     },
     {
       "id": 22,
       "title": "任务 22",
       "description": "这是任务 22 的详细描述",
       "completed": true,
-      "priority": "LOW",
-      "dueDate": "2025-09-01T08:14:43.397Z",
-      "createdAt": "2024-01-29T13:13:57.141Z",
-      "updatedAt": "2025-04-28T22:17:04.230Z"
+      "priority": "HIGH",
+      "dueDate": "2025-10-27T08:51:14.063Z",
+      "createdAt": "2024-11-26T12:32:34.428Z",
+      "updatedAt": "2025-06-10T14:18:32.973Z"
     },
     {
       "id": 23,
       "title": "任务 23",
       "description": "这是任务 23 的详细描述",
-      "completed": false,
-      "priority": "MEDIUM",
-      "dueDate": "2025-09-21T03:23:44.372Z",
-      "createdAt": "2024-06-29T14:39:45.141Z",
-      "updatedAt": "2024-05-28T10:52:38.335Z"
+      "completed": true,
+      "priority": "HIGH",
+      "dueDate": "2025-07-31T15:24:28.540Z",
+      "createdAt": "2025-01-15T10:18:20.295Z",
+      "updatedAt": "2024-11-25T01:22:04.627Z"
     },
     {
       "id": 24,
       "title": "任务 24",
       "description": "这是任务 24 的详细描述",
-      "completed": true,
+      "completed": false,
       "priority": "LOW",
-      "dueDate": "2025-11-09T11:31:45.880Z",
-      "createdAt": "2024-05-03T06:02:48.675Z",
-      "updatedAt": "2025-07-15T22:04:54.398Z"
+      "dueDate": "2025-12-05T09:29:35.851Z",
+      "createdAt": "2025-01-09T08:59:19.985Z",
+      "updatedAt": "2024-01-19T02:41:48.316Z"
     },
     {
       "id": 25,
       "title": "任务 25",
       "description": "这是任务 25 的详细描述",
       "completed": true,
-      "priority": "LOW",
-      "dueDate": "2025-11-25T21:11:18.242Z",
-      "createdAt": "2024-05-31T14:22:53.150Z",
-      "updatedAt": "2024-09-03T02:48:31.020Z"
+      "priority": "MEDIUM",
+      "dueDate": "2025-09-01T01:43:16.589Z",
+      "createdAt": "2025-05-18T01:10:18.699Z",
+      "updatedAt": "2024-05-07T21:36:12.981Z"
     }
   ],
   "users": [
@@ -270,8 +270,8 @@
       "status": "active",
       "departmentId": 1,
       "phone": "13800000000",
-      "createdAt": "2024-08-01T08:24:22.918Z",
-      "updatedAt": "2024-01-28T23:06:13.570Z"
+      "createdAt": "2025-07-03T12:40:53.324Z",
+      "updatedAt": "2024-09-01T07:08:50.236Z"
     },
     {
       "id": 2,
@@ -287,8 +287,8 @@
       "status": "active",
       "departmentId": 1,
       "phone": "13800000001",
-      "createdAt": "2025-06-15T15:07:40.288Z",
-      "updatedAt": "2024-03-14T12:09:32.916Z"
+      "createdAt": "2024-06-08T22:59:23.093Z",
+      "updatedAt": "2024-02-24T08:05:03.863Z"
     },
     {
       "id": 3,
@@ -304,8 +304,8 @@
       "status": "active",
       "departmentId": 2,
       "phone": "13800000002",
-      "createdAt": "2024-11-22T00:48:41.118Z",
-      "updatedAt": "2024-11-11T05:04:10.557Z"
+      "createdAt": "2024-02-26T19:03:15.261Z",
+      "updatedAt": "2024-08-21T18:13:30.967Z"
     },
     {
       "id": 4,
@@ -321,8 +321,8 @@
       "status": "active",
       "departmentId": 2,
       "phone": "13800000003",
-      "createdAt": "2024-03-22T18:30:34.911Z",
-      "updatedAt": "2025-03-13T01:34:35.516Z"
+      "createdAt": "2025-06-08T09:17:23.069Z",
+      "updatedAt": "2025-04-05T03:11:13.253Z"
     },
     {
       "id": 5,
@@ -338,8 +338,8 @@
       "status": "active",
       "departmentId": 3,
       "phone": "13800000004",
-      "createdAt": "2024-02-06T08:02:44.523Z",
-      "updatedAt": "2024-06-04T18:06:56.839Z"
+      "createdAt": "2024-12-23T19:33:37.090Z",
+      "updatedAt": "2024-10-24T22:06:37.969Z"
     },
     {
       "id": 6,
@@ -355,8 +355,8 @@
       "status": "active",
       "departmentId": 3,
       "phone": "13800000005",
-      "createdAt": "2025-06-18T13:39:58.183Z",
-      "updatedAt": "2025-02-13T08:44:44.064Z"
+      "createdAt": "2024-05-16T12:21:10.393Z",
+      "updatedAt": "2024-12-17T18:37:55.474Z"
     },
     {
       "id": 7,
@@ -372,8 +372,8 @@
       "status": "inactive",
       "departmentId": 4,
       "phone": "13800000006",
-      "createdAt": "2025-03-04T01:46:06.446Z",
-      "updatedAt": "2024-07-17T22:35:46.654Z"
+      "createdAt": "2025-07-03T00:27:53.673Z",
+      "updatedAt": "2024-08-24T20:28:56.114Z"
     },
     {
       "id": 8,
@@ -389,8 +389,8 @@
       "status": "inactive",
       "departmentId": 4,
       "phone": "13800000007",
-      "createdAt": "2025-05-15T23:15:29.757Z",
-      "updatedAt": "2024-11-29T18:34:18.190Z"
+      "createdAt": "2025-05-15T07:50:33.730Z",
+      "updatedAt": "2024-02-20T07:38:34.554Z"
     }
   ],
   "roles": [
@@ -411,8 +411,8 @@
         9,
         10
       ],
-      "createdAt": "2024-01-30T04:20:39.411Z",
-      "updatedAt": "2025-03-29T07:51:02.937Z"
+      "createdAt": "2024-12-25T23:45:17.963Z",
+      "updatedAt": "2024-04-14T20:40:22.754Z"
     },
     {
       "id": 2,
@@ -425,8 +425,8 @@
         5,
         6
       ],
-      "createdAt": "2024-11-06T15:01:56.890Z",
-      "updatedAt": "2024-05-09T12:45:02.497Z"
+      "createdAt": "2024-02-17T10:06:48.413Z",
+      "updatedAt": "2024-10-22T05:27:09.447Z"
     },
     {
       "id": 3,
@@ -441,8 +441,8 @@
         6,
         7
       ],
-      "createdAt": "2024-04-26T02:25:13.075Z",
-      "updatedAt": "2024-02-10T15:22:28.415Z"
+      "createdAt": "2024-09-20T23:42:35.294Z",
+      "updatedAt": "2025-06-08T04:40:49.191Z"
     }
   ],
   "permissions": [
@@ -452,8 +452,8 @@
       "code": "todo:view",
       "description": "查看待办事项",
       "module": "todo",
-      "createdAt": "2025-01-21T15:59:10.548Z",
-      "updatedAt": "2025-04-28T10:04:01.930Z"
+      "createdAt": "2024-10-12T12:21:18.670Z",
+      "updatedAt": "2024-12-06T11:24:35.606Z"
     },
     {
       "id": 2,
@@ -461,8 +461,8 @@
       "code": "todo:create",
       "description": "创建待办事项",
       "module": "todo",
-      "createdAt": "2025-03-02T16:00:56.273Z",
-      "updatedAt": "2024-05-09T11:42:58.609Z"
+      "createdAt": "2024-09-21T16:39:49.275Z",
+      "updatedAt": "2024-04-23T07:33:34.233Z"
     },
     {
       "id": 3,
@@ -470,8 +470,8 @@
       "code": "todo:edit",
       "description": "编辑待办事项",
       "module": "todo",
-      "createdAt": "2025-03-27T06:11:33.357Z",
-      "updatedAt": "2024-11-04T21:30:58.314Z"
+      "createdAt": "2025-02-12T22:38:10.306Z",
+      "updatedAt": "2025-07-03T03:09:22.490Z"
     },
     {
       "id": 4,
@@ -479,8 +479,8 @@
       "code": "todo:delete",
       "description": "删除待办事项",
       "module": "todo",
-      "createdAt": "2025-05-21T18:00:03.001Z",
-      "updatedAt": "2025-03-11T21:20:19.297Z"
+      "createdAt": "2024-09-17T01:55:46.709Z",
+      "updatedAt": "2025-03-10T01:47:53.713Z"
     },
     {
       "id": 5,
@@ -488,8 +488,8 @@
       "code": "user:view",
       "description": "查看用户信息",
       "module": "user",
-      "createdAt": "2024-05-25T16:58:12.718Z",
-      "updatedAt": "2024-08-15T18:41:08.050Z"
+      "createdAt": "2024-05-03T12:51:22.387Z",
+      "updatedAt": "2024-08-10T17:01:20.892Z"
     },
     {
       "id": 6,
@@ -497,8 +497,8 @@
       "code": "user:create",
       "description": "创建用户",
       "module": "user",
-      "createdAt": "2025-01-31T16:30:46.539Z",
-      "updatedAt": "2025-06-23T03:57:28.165Z"
+      "createdAt": "2024-08-04T04:48:46.212Z",
+      "updatedAt": "2024-06-16T11:42:15.584Z"
     },
     {
       "id": 7,
@@ -506,8 +506,8 @@
       "code": "user:edit",
       "description": "编辑用户信息",
       "module": "user",
-      "createdAt": "2024-02-04T18:54:32.326Z",
-      "updatedAt": "2024-10-14T17:34:42.276Z"
+      "createdAt": "2025-05-08T07:45:53.534Z",
+      "updatedAt": "2024-04-02T19:16:31.445Z"
     },
     {
       "id": 8,
@@ -515,8 +515,8 @@
       "code": "user:delete",
       "description": "删除用户",
       "module": "user",
-      "createdAt": "2024-12-24T21:27:21.498Z",
-      "updatedAt": "2024-03-26T19:21:19.836Z"
+      "createdAt": "2024-01-30T05:42:00.540Z",
+      "updatedAt": "2025-06-17T17:13:44.775Z"
     },
     {
       "id": 9,
@@ -524,8 +524,8 @@
       "code": "permission:manage",
       "description": "管理权限",
       "module": "permission",
-      "createdAt": "2024-12-03T23:29:59.175Z",
-      "updatedAt": "2025-05-19T09:13:24.333Z"
+      "createdAt": "2025-04-07T15:54:33.591Z",
+      "updatedAt": "2024-01-25T01:11:45.032Z"
     },
     {
       "id": 10,
@@ -533,8 +533,8 @@
       "code": "system:config",
       "description": "系统配置",
       "module": "system",
-      "createdAt": "2025-06-30T21:46:21.103Z",
-      "updatedAt": "2024-10-20T08:09:40.838Z"
+      "createdAt": "2024-08-24T04:04:57.568Z",
+      "updatedAt": "2025-07-11T23:20:20.463Z"
     }
   ],
   "dictTypes": [
@@ -544,8 +544,8 @@
       "code": "user_status",
       "description": "用户账户状态分类",
       "status": "active",
-      "createdAt": "2024-08-06T20:43:09.192Z",
-      "updatedAt": "2024-12-31T11:41:27.750Z"
+      "createdAt": "2025-02-05T09:24:49.508Z",
+      "updatedAt": "2024-05-19T16:40:19.962Z"
     },
     {
       "id": 2,
@@ -553,8 +553,8 @@
       "code": "priority",
       "description": "任务优先级分类",
       "status": "active",
-      "createdAt": "2024-10-13T23:15:17.863Z",
-      "updatedAt": "2024-01-31T02:20:42.318Z"
+      "createdAt": "2024-12-19T23:47:06.522Z",
+      "updatedAt": "2024-09-10T09:51:45.586Z"
     },
     {
       "id": 3,
@@ -562,8 +562,8 @@
       "code": "asset_type",
       "description": "资产分类管理",
       "status": "active",
-      "createdAt": "2024-03-18T11:43:22.694Z",
-      "updatedAt": "2025-01-24T07:02:08.904Z"
+      "createdAt": "2024-03-31T00:50:34.747Z",
+      "updatedAt": "2024-01-03T10:35:30.138Z"
     }
   ],
   "dictItems": [
@@ -574,8 +574,8 @@
       "value": "active",
       "sort": 1,
       "status": "active",
-      "createdAt": "2024-07-17T08:26:19.170Z",
-      "updatedAt": "2024-09-22T20:08:52.658Z"
+      "createdAt": "2024-06-06T14:12:16.863Z",
+      "updatedAt": "2024-10-07T19:32:45.195Z"
     },
     {
       "id": 2,
@@ -584,8 +584,8 @@
       "value": "inactive",
       "sort": 2,
       "status": "active",
-      "createdAt": "2024-01-26T22:18:25.147Z",
-      "updatedAt": "2024-02-13T10:37:56.752Z"
+      "createdAt": "2024-07-14T00:57:54.724Z",
+      "updatedAt": "2025-05-15T01:57:07.390Z"
     },
     {
       "id": 3,
@@ -594,8 +594,8 @@
       "value": "LOW",
       "sort": 1,
       "status": "active",
-      "createdAt": "2025-01-29T15:03:36.822Z",
-      "updatedAt": "2024-10-05T04:40:59.084Z"
+      "createdAt": "2024-10-27T09:58:55.962Z",
+      "updatedAt": "2024-11-29T11:54:22.887Z"
     },
     {
       "id": 4,
@@ -604,8 +604,8 @@
       "value": "MEDIUM",
       "sort": 2,
       "status": "active",
-      "createdAt": "2025-05-13T01:29:53.242Z",
-      "updatedAt": "2025-06-21T15:00:41.647Z"
+      "createdAt": "2024-06-14T14:21:12.504Z",
+      "updatedAt": "2024-11-13T06:48:00.200Z"
     },
     {
       "id": 5,
@@ -614,8 +614,8 @@
       "value": "HIGH",
       "sort": 3,
       "status": "active",
-      "createdAt": "2025-06-11T13:23:26.346Z",
-      "updatedAt": "2024-04-05T12:15:51.675Z"
+      "createdAt": "2024-08-31T06:37:11.577Z",
+      "updatedAt": "2024-05-20T21:14:01.168Z"
     },
     {
       "id": 6,
@@ -624,8 +624,8 @@
       "value": "computer",
       "sort": 1,
       "status": "active",
-      "createdAt": "2024-03-04T15:57:50.075Z",
-      "updatedAt": "2024-01-30T05:02:06.955Z"
+      "createdAt": "2024-03-08T08:06:32.367Z",
+      "updatedAt": "2024-04-09T05:12:46.213Z"
     },
     {
       "id": 7,
@@ -634,8 +634,8 @@
       "value": "monitor",
       "sort": 2,
       "status": "active",
-      "createdAt": "2024-04-03T00:52:25.558Z",
-      "updatedAt": "2025-01-24T15:38:44.434Z"
+      "createdAt": "2024-12-20T08:14:14.330Z",
+      "updatedAt": "2025-04-27T12:03:04.928Z"
     },
     {
       "id": 8,
@@ -644,8 +644,8 @@
       "value": "printer",
       "sort": 3,
       "status": "active",
-      "createdAt": "2024-08-19T05:30:31.706Z",
-      "updatedAt": "2024-05-16T02:33:52.908Z"
+      "createdAt": "2025-01-15T21:57:05.545Z",
+      "updatedAt": "2024-11-18T01:49:01.442Z"
     }
   ],
   "departments": [
@@ -657,8 +657,8 @@
       "parentId": null,
       "sort": 1,
       "status": "active",
-      "createdAt": "2025-05-07T09:38:05.983Z",
-      "updatedAt": "2025-01-31T10:59:22.496Z",
+      "createdAt": "2024-04-16T15:14:23.184Z",
+      "updatedAt": "2024-10-25T22:38:06.253Z",
       "children": [
         {
           "id": 2,
@@ -668,8 +668,8 @@
           "parentId": 1,
           "sort": 1,
           "status": "active",
-          "createdAt": "2024-06-29T00:50:46.265Z",
-          "updatedAt": "2024-11-21T01:11:33.964Z"
+          "createdAt": "2025-06-30T13:36:34.309Z",
+          "updatedAt": "2024-01-27T04:20:29.587Z"
         },
         {
           "id": 3,
@@ -679,8 +679,8 @@
           "parentId": 1,
           "sort": 2,
           "status": "active",
-          "createdAt": "2024-05-14T04:16:40.471Z",
-          "updatedAt": "2024-02-03T15:11:17.396Z"
+          "createdAt": "2025-03-04T22:42:27.721Z",
+          "updatedAt": "2025-01-19T04:54:55.798Z"
         }
       ]
     },
@@ -692,8 +692,8 @@
       "parentId": null,
       "sort": 2,
       "status": "active",
-      "createdAt": "2024-09-14T23:25:03.474Z",
-      "updatedAt": "2024-07-06T12:08:37.743Z",
+      "createdAt": "2024-12-10T17:47:55.411Z",
+      "updatedAt": "2024-12-25T09:51:42.285Z",
       "children": [
         {
           "id": 5,
@@ -703,8 +703,8 @@
           "parentId": 4,
           "sort": 1,
           "status": "active",
-          "createdAt": "2024-08-20T19:48:52.441Z",
-          "updatedAt": "2024-05-06T20:13:49.983Z"
+          "createdAt": "2024-11-25T08:18:12.352Z",
+          "updatedAt": "2024-04-19T03:55:01.461Z"
         }
       ]
     },
@@ -716,8 +716,8 @@
       "parentId": null,
       "sort": 3,
       "status": "active",
-      "createdAt": "2024-10-04T05:00:25.693Z",
-      "updatedAt": "2025-05-28T16:28:03.873Z"
+      "createdAt": "2025-05-04T16:14:05.416Z",
+      "updatedAt": "2024-08-04T14:27:01.811Z"
     }
   ],
   "assets": [
@@ -726,105 +726,105 @@
       "name": "资产设备1",
       "type": "monitor",
       "serialNumber": "SN000001",
-      "model": "Model-C1",
-      "status": "available",
+      "model": "Model-A1",
+      "status": "maintenance",
       "assignedUserId": null,
-      "purchaseDate": "2025-07-13T04:30:04.196Z",
-      "warrantyExpiry": "2025-10-06T09:52:49.148Z",
-      "price": 4887,
+      "purchaseDate": "2025-06-14T04:36:06.311Z",
+      "warrantyExpiry": "2025-07-23T09:10:12.242Z",
+      "price": 3430,
       "description": "这是资产设备1的详细描述",
-      "createdAt": "2024-09-27T14:43:55.775Z",
-      "updatedAt": "2024-11-12T05:08:26.716Z"
+      "createdAt": "2024-10-01T19:10:50.296Z",
+      "updatedAt": "2024-05-25T10:11:39.075Z"
     },
     {
       "id": 2,
       "name": "资产设备2",
-      "type": "printer",
+      "type": "monitor",
       "serialNumber": "SN000002",
-      "model": "Model-C2",
-      "status": "available",
+      "model": "Model-B2",
+      "status": "retired",
       "assignedUserId": 3,
-      "purchaseDate": "2024-10-30T22:43:28.587Z",
-      "warrantyExpiry": "2025-08-28T11:49:35.421Z",
-      "price": 4354,
+      "purchaseDate": "2024-11-15T14:33:23.706Z",
+      "warrantyExpiry": "2025-07-25T12:56:43.588Z",
+      "price": 1261,
       "description": "这是资产设备2的详细描述",
-      "createdAt": "2024-10-14T14:19:38.546Z",
-      "updatedAt": "2024-10-19T10:50:40.238Z"
+      "createdAt": "2025-06-23T06:08:24.778Z",
+      "updatedAt": "2024-03-18T05:17:24.105Z"
     },
     {
       "id": 3,
       "name": "资产设备3",
       "type": "monitor",
       "serialNumber": "SN000003",
-      "model": "Model-A3",
-      "status": "available",
-      "assignedUserId": null,
-      "purchaseDate": "2025-04-05T10:30:30.628Z",
-      "warrantyExpiry": "2025-09-10T04:48:16.811Z",
-      "price": 1936,
+      "model": "Model-C3",
+      "status": "assigned",
+      "assignedUserId": 6,
+      "purchaseDate": "2024-07-03T09:38:27.945Z",
+      "warrantyExpiry": "2025-09-01T14:23:18.680Z",
+      "price": 5805,
       "description": "这是资产设备3的详细描述",
-      "createdAt": "2024-08-15T11:56:01.525Z",
-      "updatedAt": "2024-09-16T12:26:29.202Z"
+      "createdAt": "2024-08-16T04:28:10.026Z",
+      "updatedAt": "2024-06-09T10:50:32.286Z"
     },
     {
       "id": 4,
       "name": "资产设备4",
-      "type": "computer",
+      "type": "monitor",
       "serialNumber": "SN000004",
       "model": "Model-C4",
       "status": "assigned",
-      "assignedUserId": 8,
-      "purchaseDate": "2024-05-31T01:20:36.657Z",
-      "warrantyExpiry": "2025-12-28T01:36:27.636Z",
-      "price": 2879,
+      "assignedUserId": 4,
+      "purchaseDate": "2024-06-16T11:58:24.974Z",
+      "warrantyExpiry": "2025-09-10T23:08:59.810Z",
+      "price": 3148,
       "description": "这是资产设备4的详细描述",
-      "createdAt": "2025-01-05T15:15:31.628Z",
-      "updatedAt": "2024-04-20T20:49:26.779Z"
+      "createdAt": "2024-12-31T15:31:09.465Z",
+      "updatedAt": "2024-12-21T21:22:59.738Z"
     },
     {
       "id": 5,
       "name": "资产设备5",
       "type": "printer",
       "serialNumber": "SN000005",
-      "model": "Model-B5",
-      "status": "retired",
-      "assignedUserId": 4,
-      "purchaseDate": "2024-08-09T00:48:38.743Z",
-      "warrantyExpiry": "2025-11-25T21:11:23.062Z",
-      "price": 6207,
+      "model": "Model-A5",
+      "status": "assigned",
+      "assignedUserId": null,
+      "purchaseDate": "2025-02-17T16:53:17.505Z",
+      "warrantyExpiry": "2025-08-28T01:04:13.106Z",
+      "price": 1618,
       "description": "这是资产设备5的详细描述",
-      "createdAt": "2025-04-21T08:39:32.645Z",
-      "updatedAt": "2024-11-18T07:23:53.170Z"
+      "createdAt": "2025-06-30T11:24:07.907Z",
+      "updatedAt": "2024-02-26T21:39:12.710Z"
     },
     {
       "id": 6,
       "name": "资产设备6",
-      "type": "printer",
+      "type": "monitor",
       "serialNumber": "SN000006",
       "model": "Model-A6",
-      "status": "retired",
-      "assignedUserId": 4,
-      "purchaseDate": "2024-11-16T14:07:39.014Z",
-      "warrantyExpiry": "2025-11-28T01:16:44.030Z",
-      "price": 2135,
+      "status": "available",
+      "assignedUserId": 6,
+      "purchaseDate": "2024-01-25T23:02:25.419Z",
+      "warrantyExpiry": "2025-11-21T20:55:18.706Z",
+      "price": 8827,
       "description": "这是资产设备6的详细描述",
-      "createdAt": "2024-03-28T20:14:32.079Z",
-      "updatedAt": "2024-04-12T01:37:48.026Z"
+      "createdAt": "2024-02-24T18:53:30.172Z",
+      "updatedAt": "2024-03-16T16:53:00.650Z"
     },
     {
       "id": 7,
       "name": "资产设备7",
       "type": "printer",
       "serialNumber": "SN000007",
-      "model": "Model-C7",
-      "status": "maintenance",
-      "assignedUserId": 7,
-      "purchaseDate": "2024-08-24T05:02:58.952Z",
-      "warrantyExpiry": "2025-10-03T04:57:35.189Z",
-      "price": 4947,
+      "model": "Model-B7",
+      "status": "available",
+      "assignedUserId": null,
+      "purchaseDate": "2024-07-19T15:08:02.171Z",
+      "warrantyExpiry": "2025-10-02T07:13:19.711Z",
+      "price": 6781,
       "description": "这是资产设备7的详细描述",
-      "createdAt": "2025-02-17T19:16:30.732Z",
-      "updatedAt": "2024-06-24T16:56:40.768Z"
+      "createdAt": "2025-03-06T04:31:16.686Z",
+      "updatedAt": "2025-01-12T12:58:27.657Z"
     },
     {
       "id": 8,
@@ -834,87 +834,87 @@
       "model": "Model-B8",
       "status": "retired",
       "assignedUserId": null,
-      "purchaseDate": "2025-01-28T21:12:22.811Z",
-      "warrantyExpiry": "2025-11-20T23:56:42.327Z",
-      "price": 3517,
+      "purchaseDate": "2024-07-30T21:57:10.665Z",
+      "warrantyExpiry": "2025-12-07T00:51:05.631Z",
+      "price": 4748,
       "description": "这是资产设备8的详细描述",
-      "createdAt": "2024-07-10T07:46:29.877Z",
-      "updatedAt": "2024-08-01T02:22:35.284Z"
+      "createdAt": "2024-05-23T17:36:52.715Z",
+      "updatedAt": "2024-06-13T02:16:11.333Z"
     },
     {
       "id": 9,
       "name": "资产设备9",
-      "type": "monitor",
+      "type": "computer",
       "serialNumber": "SN000009",
       "model": "Model-C9",
       "status": "available",
       "assignedUserId": null,
-      "purchaseDate": "2025-04-08T19:11:41.717Z",
-      "warrantyExpiry": "2025-07-26T15:48:56.028Z",
-      "price": 9276,
+      "purchaseDate": "2024-10-07T16:17:26.623Z",
+      "warrantyExpiry": "2025-08-16T18:14:19.793Z",
+      "price": 2270,
       "description": "这是资产设备9的详细描述",
-      "createdAt": "2025-04-16T11:40:41.201Z",
-      "updatedAt": "2024-10-24T02:44:46.146Z"
+      "createdAt": "2025-03-06T05:19:13.317Z",
+      "updatedAt": "2024-12-21T05:11:45.430Z"
     },
     {
       "id": 10,
       "name": "资产设备10",
-      "type": "monitor",
+      "type": "printer",
       "serialNumber": "SN000010",
-      "model": "Model-C10",
-      "status": "assigned",
-      "assignedUserId": 3,
-      "purchaseDate": "2024-11-23T17:35:14.830Z",
-      "warrantyExpiry": "2025-08-13T04:24:06.764Z",
-      "price": 10980,
+      "model": "Model-A10",
+      "status": "available",
+      "assignedUserId": 7,
+      "purchaseDate": "2024-12-26T22:55:57.376Z",
+      "warrantyExpiry": "2025-10-19T12:36:33.470Z",
+      "price": 2675,
       "description": "这是资产设备10的详细描述",
-      "createdAt": "2025-04-10T08:35:20.982Z",
-      "updatedAt": "2024-02-12T09:44:39.310Z"
+      "createdAt": "2024-03-23T21:48:39.253Z",
+      "updatedAt": "2024-12-06T06:32:02.950Z"
     },
     {
       "id": 11,
       "name": "资产设备11",
-      "type": "computer",
+      "type": "monitor",
       "serialNumber": "SN000011",
       "model": "Model-C11",
       "status": "maintenance",
-      "assignedUserId": 7,
-      "purchaseDate": "2024-05-30T00:38:32.890Z",
-      "warrantyExpiry": "2025-12-19T07:15:31.512Z",
-      "price": 7575,
+      "assignedUserId": 8,
+      "purchaseDate": "2025-01-27T04:48:28.240Z",
+      "warrantyExpiry": "2025-09-30T09:08:10.943Z",
+      "price": 1109,
       "description": "这是资产设备11的详细描述",
-      "createdAt": "2025-04-28T11:33:01.638Z",
-      "updatedAt": "2024-09-20T12:55:38.439Z"
+      "createdAt": "2024-03-06T20:14:37.657Z",
+      "updatedAt": "2025-02-28T18:00:19.923Z"
     },
     {
       "id": 12,
       "name": "资产设备12",
-      "type": "monitor",
+      "type": "computer",
       "serialNumber": "SN000012",
-      "model": "Model-C12",
-      "status": "assigned",
+      "model": "Model-A12",
+      "status": "maintenance",
       "assignedUserId": null,
-      "purchaseDate": "2024-05-26T10:52:45.353Z",
-      "warrantyExpiry": "2025-10-10T15:54:00.229Z",
-      "price": 1285,
+      "purchaseDate": "2024-02-03T08:12:37.049Z",
+      "warrantyExpiry": "2025-10-02T19:09:18.635Z",
+      "price": 2579,
       "description": "这是资产设备12的详细描述",
-      "createdAt": "2024-10-11T00:49:57.400Z",
-      "updatedAt": "2024-02-25T06:00:48.672Z"
+      "createdAt": "2025-02-24T17:27:28.041Z",
+      "updatedAt": "2024-04-17T20:32:12.130Z"
     },
     {
       "id": 13,
       "name": "资产设备13",
-      "type": "computer",
+      "type": "monitor",
       "serialNumber": "SN000013",
-      "model": "Model-A13",
+      "model": "Model-B13",
       "status": "maintenance",
       "assignedUserId": null,
-      "purchaseDate": "2025-03-23T20:01:40.398Z",
-      "warrantyExpiry": "2025-10-19T08:06:53.485Z",
-      "price": 6441,
+      "purchaseDate": "2024-08-03T08:46:08.442Z",
+      "warrantyExpiry": "2025-08-18T14:22:09.506Z",
+      "price": 6007,
       "description": "这是资产设备13的详细描述",
-      "createdAt": "2024-08-12T08:51:42.261Z",
-      "updatedAt": "2024-04-29T02:12:57.060Z"
+      "createdAt": "2024-02-10T22:01:43.786Z",
+      "updatedAt": "2025-04-12T13:42:19.988Z"
     },
     {
       "id": 14,
@@ -922,74 +922,74 @@
       "type": "computer",
       "serialNumber": "SN000014",
       "model": "Model-A14",
-      "status": "retired",
+      "status": "available",
       "assignedUserId": null,
-      "purchaseDate": "2025-06-27T20:38:04.132Z",
-      "warrantyExpiry": "2025-09-15T03:42:11.187Z",
-      "price": 7967,
+      "purchaseDate": "2024-01-17T19:24:50.020Z",
+      "warrantyExpiry": "2025-11-07T17:22:41.783Z",
+      "price": 6408,
       "description": "这是资产设备14的详细描述",
-      "createdAt": "2025-06-13T23:25:51.543Z",
-      "updatedAt": "2025-04-08T20:59:43.520Z"
+      "createdAt": "2024-04-09T21:54:53.532Z",
+      "updatedAt": "2025-03-01T10:20:50.170Z"
     },
     {
       "id": 15,
       "name": "资产设备15",
-      "type": "computer",
+      "type": "printer",
       "serialNumber": "SN000015",
-      "model": "Model-B15",
-      "status": "available",
-      "assignedUserId": 7,
-      "purchaseDate": "2024-08-27T23:09:19.123Z",
-      "warrantyExpiry": "2025-08-01T15:34:03.955Z",
-      "price": 5080,
+      "model": "Model-C15",
+      "status": "assigned",
+      "assignedUserId": null,
+      "purchaseDate": "2024-05-28T06:12:42.415Z",
+      "warrantyExpiry": "2025-07-21T18:26:49.173Z",
+      "price": 4077,
       "description": "这是资产设备15的详细描述",
-      "createdAt": "2024-07-17T21:39:28.008Z",
-      "updatedAt": "2025-03-19T21:59:45.615Z"
+      "createdAt": "2024-01-07T07:55:35.169Z",
+      "updatedAt": "2024-01-13T11:01:35.547Z"
     },
     {
       "id": 16,
       "name": "资产设备16",
-      "type": "printer",
+      "type": "computer",
       "serialNumber": "SN000016",
-      "model": "Model-A16",
-      "status": "available",
+      "model": "Model-B16",
+      "status": "maintenance",
       "assignedUserId": null,
-      "purchaseDate": "2025-02-19T00:33:31.700Z",
-      "warrantyExpiry": "2025-09-30T07:35:43.666Z",
-      "price": 9948,
+      "purchaseDate": "2024-01-01T16:35:07.504Z",
+      "warrantyExpiry": "2025-12-19T08:25:56.510Z",
+      "price": 4231,
       "description": "这是资产设备16的详细描述",
-      "createdAt": "2025-06-23T11:25:27.938Z",
-      "updatedAt": "2025-05-01T16:29:55.639Z"
+      "createdAt": "2025-03-21T05:23:26.594Z",
+      "updatedAt": "2024-11-18T08:15:10.301Z"
     },
     {
       "id": 17,
       "name": "资产设备17",
-      "type": "printer",
+      "type": "monitor",
       "serialNumber": "SN000017",
-      "model": "Model-C17",
-      "status": "maintenance",
-      "assignedUserId": null,
-      "purchaseDate": "2024-12-07T00:52:11.674Z",
-      "warrantyExpiry": "2025-11-28T22:20:46.857Z",
-      "price": 1085,
+      "model": "Model-A17",
+      "status": "available",
+      "assignedUserId": 3,
+      "purchaseDate": "2024-01-07T21:37:13.193Z",
+      "warrantyExpiry": "2025-12-26T03:35:04.191Z",
+      "price": 10729,
       "description": "这是资产设备17的详细描述",
-      "createdAt": "2025-05-19T19:18:57.360Z",
-      "updatedAt": "2024-06-28T05:22:25.294Z"
+      "createdAt": "2025-05-26T04:28:12.943Z",
+      "updatedAt": "2024-06-06T05:46:49.841Z"
     },
     {
       "id": 18,
       "name": "资产设备18",
-      "type": "monitor",
+      "type": "computer",
       "serialNumber": "SN000018",
-      "model": "Model-B18",
-      "status": "maintenance",
-      "assignedUserId": null,
-      "purchaseDate": "2024-04-18T11:40:49.655Z",
-      "warrantyExpiry": "2025-12-15T05:16:53.486Z",
-      "price": 4498,
+      "model": "Model-C18",
+      "status": "available",
+      "assignedUserId": 7,
+      "purchaseDate": "2024-11-28T01:55:13.573Z",
+      "warrantyExpiry": "2025-11-08T14:09:45.521Z",
+      "price": 8837,
       "description": "这是资产设备18的详细描述",
-      "createdAt": "2024-05-06T15:19:26.005Z",
-      "updatedAt": "2025-04-08T10:18:18.481Z"
+      "createdAt": "2025-06-09T02:25:54.099Z",
+      "updatedAt": "2024-04-24T17:13:19.824Z"
     },
     {
       "id": 19,
@@ -997,29 +997,29 @@
       "type": "printer",
       "serialNumber": "SN000019",
       "model": "Model-B19",
-      "status": "assigned",
-      "assignedUserId": 7,
-      "purchaseDate": "2025-05-14T01:38:43.535Z",
-      "warrantyExpiry": "2025-08-11T06:24:09.958Z",
-      "price": 5534,
+      "status": "available",
+      "assignedUserId": 4,
+      "purchaseDate": "2025-04-13T07:50:57.622Z",
+      "warrantyExpiry": "2025-09-10T19:30:04.774Z",
+      "price": 10663,
       "description": "这是资产设备19的详细描述",
-      "createdAt": "2024-11-29T16:00:09.461Z",
-      "updatedAt": "2024-07-26T14:43:51.317Z"
+      "createdAt": "2024-02-08T07:28:16.756Z",
+      "updatedAt": "2024-03-29T20:03:54.959Z"
     },
     {
       "id": 20,
       "name": "资产设备20",
-      "type": "printer",
+      "type": "monitor",
       "serialNumber": "SN000020",
-      "model": "Model-C20",
-      "status": "maintenance",
-      "assignedUserId": 1,
-      "purchaseDate": "2025-04-17T03:01:34.087Z",
-      "warrantyExpiry": "2025-07-26T10:33:03.350Z",
-      "price": 5521,
+      "model": "Model-B20",
+      "status": "retired",
+      "assignedUserId": null,
+      "purchaseDate": "2024-07-30T17:46:55.402Z",
+      "warrantyExpiry": "2025-09-06T13:40:36.470Z",
+      "price": 1698,
       "description": "这是资产设备20的详细描述",
-      "createdAt": "2025-07-06T20:41:55.085Z",
-      "updatedAt": "2024-02-22T09:00:06.436Z"
+      "createdAt": "2025-04-15T19:45:40.451Z",
+      "updatedAt": "2025-07-09T06:13:07.959Z"
     }
   ]
 }

@@ -92,6 +92,11 @@ export class AuthService {
       return false;
     }
 
+    // 如果是mock模式，直接返回true
+    if (environment.mock && token.includes('mock-jwt-token')) {
+      return true;
+    }
+
     try {
       const payload = this.parseJwtPayload(token);
       const currentTime = Math.floor(Date.now() / 1000);
@@ -105,6 +110,12 @@ export class AuthService {
       return true;
     } catch (error) {
       console.error('Token解析失败:', error);
+      
+      // 如果是mock模式，即使解析失败也返回true
+      if (environment.mock && token.includes('mock-jwt-token')) {
+        return true;
+      }
+      
       this.clearUserData();
       return false;
     }
@@ -114,6 +125,15 @@ export class AuthService {
    * 解析JWT token的payload部分
    */
   private parseJwtPayload(token: string): any {
+    // 如果是mock token，返回模拟的payload
+    if (environment.mock && token.includes('mock-jwt-token')) {
+      return {
+        sub: 'admin',
+        exp: Math.floor(Date.now() / 1000) + 3600, // 1小时后过期
+        permissions: ['*']
+      };
+    }
+    
     const parts = token.split('.');
     if (parts.length !== 3) {
       throw new Error('Invalid JWT token format');

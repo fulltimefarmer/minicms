@@ -23,4 +23,4 @@ echo "用户名: admin"
 echo "密码: 123456"
 echo "================================"
 
-npm run start:mock
+npm run mock

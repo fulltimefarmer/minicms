@@ -9,27 +9,132 @@ module.exports = (req, res, next) => {
     res.sendStatus(200);
     return;
   }
+  
+  // 确保请求体已解析
+  if (req.method === 'POST' && req.body && typeof req.body === 'string') {
+    try {
+      req.body = JSON.parse(req.body);
+    } catch (e) {
+      console.log('请求体解析失败:', e);
+    }
+  }
 
   // 模拟认证
-  if (req.path.includes('/auth/login')) {
-    const { username, password } = req.body;
+  if (req.path.includes('/auth/login') && req.method === 'POST') {
+    // 打印完整的请求信息以便调试
+    console.log('登录请求路径:', req.path);
+    console.log('登录请求方法:', req.method);
+    console.log('登录请求头:', req.headers);
+    console.log('登录请求体:', req.body);
+    
+    // 确保req.body是对象
+    let username, password;
+    if (typeof req.body === 'string') {
+      try {
+        const parsedBody = JSON.parse(req.body);
+        username = parsedBody.username;
+        password = parsedBody.password;
+      } catch (e) {
+        console.error('解析请求体失败:', e);
+      }
+    } else if (req.body && typeof req.body === 'object') {
+      username = req.body.username;
+      password = req.body.password;
+    }
+    
+    console.log('提取的登录信息:', { username, password });
+    
+    // 硬编码检查admin/123456
     if (username === 'admin' && password === '123456') {
+      console.log('使用硬编码验证成功');
+      
+      // 从数据库中获取用户详细信息
+      const fs = require('fs');
+      const path = require('path');
+      const dbPath = path.join(__dirname, 'db.json');
+      let db;
+      
+      try {
+        db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+      } catch (e) {
+        console.error('读取数据库失败:', e);
+        db = { users: [], roles: [], permissions: [] };
+      }
+      
+      // 获取admin用户
+      const adminUser = db.users.find(u => u.username === 'admin') || {
+        id: 1,
+        username: 'admin',
+        email: 'admin@example.com',
+        nickname: 'admin用户',
+        avatar: 'https://via.placeholder.com/40?text=A',
+        roleIds: [1]
+      };
+      
+      // 获取角色和权限
+      const adminRoles = db.roles.filter(role => adminUser.roleIds.includes(role.id)) || [
+        { id: 1, name: '系统管理员', code: 'admin' }
+      ];
+      
+      // 构建响应
       return res.json({
         success: true,
         message: '登录成功',
         data: {
           token: 'mock-jwt-token-' + Date.now(),
           tokenType: 'Bearer',
-          userId: 1,
-          username: 'admin',
-          email: 'admin@example.com',
-          nickname: '系统管理员',
-          avatar: 'https://via.placeholder.com/40',
-          roles: ['admin'],
-          permissions: ['*']
+          userId: adminUser.id,
+          username: adminUser.username,
+          email: adminUser.email,
+          nickname: adminUser.nickname || '系统管理员',
+          avatar: adminUser.avatar || 'https://via.placeholder.com/40?text=A',
+          roles: adminRoles.map(role => role.code),
+          permissions: ['*'] // 管理员拥有所有权限
         }
       });
     } else {
+      // 如果不是admin/123456，尝试从数据库查找
+      try {
+        const fs = require('fs');
+        const path = require('path');
+        const dbPath = path.join(__dirname, 'db.json');
+        const db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+        
+        const user = db.users.find(u => 
+          u.username === String(username) && 
+          u.password === String(password) && 
+          u.status === 'active'
+        );
+        
+        if (user) {
+          // 获取用户角色和权限
+          const userRoles = db.roles.filter(role => user.roleIds.includes(role.id));
+          const rolePermissionIds = userRoles.flatMap(role => role.permissionIds || []);
+          const userPermissions = db.permissions.filter(perm => rolePermissionIds.includes(perm.id));
+          
+          return res.json({
+            success: true,
+            message: '登录成功',
+            data: {
+              token: 'mock-jwt-token-' + Date.now(),
+              tokenType: 'Bearer',
+              userId: user.id,
+              username: user.username,
+              email: user.email,
+              nickname: user.nickname,
+              avatar: user.avatar,
+              roles: userRoles.map(role => role.code),
+              permissions: userPermissions.map(perm => perm.code)
+            }
+          });
+        }
+      } catch (e) {
+        console.error('数据库查询失败:', e);
+      }
+      
+      // 调试信息
+      console.log('登录失败，未找到匹配用户');
+      
       return res.status(401).json({
         success: false,
         message: '用户名或密码错误',
