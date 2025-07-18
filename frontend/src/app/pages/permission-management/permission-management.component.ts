@@ -1,3 +1,5 @@
+// 此文件为权限管理页面组件，负责用户、角色、权限的增删改查、分配、表单操作及界面展示。
+// 包含用户、角色、权限数据结构定义，表单处理，权限分配与校验等核心逻辑。
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';

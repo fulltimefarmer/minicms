@@ -1,3 +1,5 @@
+// 此文件为待办事项管理页面组件，负责待办事项的增删改查、筛选、状态切换等操作及界面展示。
+// 包含待办事项数据结构定义，表单处理，筛选与优先级显示等核心逻辑。
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

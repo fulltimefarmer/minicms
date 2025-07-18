@@ -1,3 +1,5 @@
+// 此文件为用户管理页面组件，负责用户的增删改查、筛选、状态切换等操作及界面展示。
+// 包含用户、部门数据结构定义，表单处理，用户过滤与统计等核心逻辑。
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -507,6 +509,7 @@ interface Department {
   `]
 })
 export class UserManagementComponent implements OnInit {
+  // 用户数据列表，用于初始化表格和保存新用户
   users: User[] = [
     {
       id: 1,
@@ -549,19 +552,30 @@ export class UserManagementComponent implements OnInit {
     }
   ];
 
+  // 当前筛选和搜索后的用户列表
   filteredUsers: User[] = [];
+  // 搜索关键词
   searchTerm = '';
+  // 筛选角色
   filterRole = '';
+  // 筛选状态
   filterStatus = '';
+  // 筛选部门
   filterDepartment = '';
   
+  // 控制模态框显示与隐藏
   showModal = false;
+  // 判断是否为编辑模式
   isEditing = false;
+  // 当前编辑或添加的用户数据
   currentUser: Partial<User> = {};
 
+  // 部门数据，用于部门选择器
   departments: Department[] = [];
+  // 扁平化后的部门列表，用于选项
   flatDepartments: Department[] = [];
   
+  // API请求URL
   private apiUrl = `${environment.apiUrl}/departments`;
 
   constructor(private http: HttpClient) {}
@@ -571,6 +585,7 @@ export class UserManagementComponent implements OnInit {
     this.loadDepartments();
   }
 
+  // 加载部门数据
   loadDepartments() {
     this.http.get<Department[]>(`${this.apiUrl}/tree`).subscribe({
       next: (data: any) => {
@@ -581,11 +596,13 @@ export class UserManagementComponent implements OnInit {
     });
   }
 
+  // 递归扁平化部门数据
   flattenDepartments() {
     this.flatDepartments = [];
     this.flattenRecursive(this.departments, this.flatDepartments);
   }
 
+  // 递归扁平化部门数据
   flattenRecursive(departments: Department[], result: Department[]) {
     for (const dept of departments) {
       result.push(dept);
@@ -595,10 +612,12 @@ export class UserManagementComponent implements OnInit {
     }
   }
 
+  // 根据层级生成缩进前缀
   getIndentPrefix(level: number): string {
     return '　'.repeat(level - 1);
   }
 
+  // 根据筛选条件过滤用户
   filterUsers() {
     this.filteredUsers = this.users.filter(user => {
       const matchesSearch = !this.searchTerm || 
@@ -613,6 +632,7 @@ export class UserManagementComponent implements OnInit {
     });
   }
 
+  // 打开添加用户模态框
   openAddUserModal() {
     this.isEditing = false;
     this.currentUser = {
@@ -622,17 +642,20 @@ export class UserManagementComponent implements OnInit {
     this.showModal = true;
   }
 
+  // 编辑用户
   editUser(user: User) {
     this.isEditing = true;
     this.currentUser = { ...user };
     this.showModal = true;
   }
 
+  // 关闭模态框
   closeModal(event?: Event) {
     this.showModal = false;
     this.currentUser = {};
   }
 
+  // 保存用户
   saveUser() {
     // 设置部门名称
     if (this.currentUser.departmentId) {
@@ -664,11 +687,13 @@ export class UserManagementComponent implements OnInit {
     this.closeModal();
   }
 
+  // 切换用户状态
   toggleUserStatus(user: User) {
     user.status = user.status === 'active' ? 'inactive' : 'active';
     this.filterUsers();
   }
 
+  // 删除用户
   deleteUser(user: User) {
     if (confirm(`确定要删除用户 "${user.name}" 吗？`)) {
       this.users = this.users.filter(u => u.id !== user.id);
@@ -676,6 +701,7 @@ export class UserManagementComponent implements OnInit {
     }
   }
 
+  // 获取角色显示名称
   getRoleDisplayName(role: string): string {
     const roleMap: { [key: string]: string } = {
       'admin': '管理员',
@@ -685,18 +711,22 @@ export class UserManagementComponent implements OnInit {
     return roleMap[role] || role;
   }
 
+  // 格式化日期
   formatDate(date: Date): string {
     return date.toLocaleDateString('zh-CN');
   }
 
+  // 获取总用户数
   getTotalUsers(): number {
     return this.users.length;
   }
 
+  // 获取激活用户数
   getActiveUsers(): number {
     return this.users.filter(u => u.status === 'active').length;
   }
 
+  // 获取停用用户数
   getInactiveUsers(): number {
     return this.users.filter(u => u.status === 'inactive').length;
   }

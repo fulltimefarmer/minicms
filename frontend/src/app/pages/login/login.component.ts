@@ -1,3 +1,5 @@
+// 此文件为登录页面组件，负责用户登录表单、登录验证及跳转逻辑。
+// 包含用户名密码输入、登录状态处理、登录后跳转等核心逻辑。
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
