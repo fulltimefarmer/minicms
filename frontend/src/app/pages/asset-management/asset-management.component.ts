@@ -3,6 +3,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NotificationService } from '../../services/notification.service';
+import { environment } from '../../../environments/environment';
 
 export interface Asset {
   id: number;
@@ -315,7 +316,7 @@ export class AssetManagementComponent implements OnInit {
   }
   
   loadAllAssets() {
-    this.http.get<Asset[]>('/api/assets').subscribe({
+    this.http.get<Asset[]>(`${environment.apiUrl}/assets`).subscribe({
       next: (data) => {
         this.assets = data;
         if (this.activeTab === 'all') {
@@ -330,7 +331,7 @@ export class AssetManagementComponent implements OnInit {
   }
   
   loadUnassignedAssets() {
-    this.http.get<Asset[]>('/api/assets/unassigned').subscribe({
+    this.http.get<Asset[]>(`${environment.apiUrl}/assets/unassigned`).subscribe({
       next: (data) => {
         this.unassignedAssets = data;
         this.activeTab = 'unassigned';
@@ -344,7 +345,7 @@ export class AssetManagementComponent implements OnInit {
   }
   
   loadUsers() {
-    this.http.get<User[]>('/api/users').subscribe({
+    this.http.get<User[]>(`${environment.apiUrl}/users`).subscribe({
       next: (data) => {
         this.users = data;
       },
@@ -360,7 +361,7 @@ export class AssetManagementComponent implements OnInit {
       return;
     }
     
-    this.http.post<Asset>('/api/assets', this.newAsset).subscribe({
+          this.http.post<Asset>(`${environment.apiUrl}/assets`, this.newAsset).subscribe({
       next: (data) => {
         this.loadAllAssets();
         this.cancelCreate();
@@ -409,7 +410,7 @@ export class AssetManagementComponent implements OnInit {
       return;
     }
     
-    this.http.post<string>(`/api/assets/${this.selectedAsset.id}/bind/${this.selectedUserId}`, {}).subscribe({
+          this.http.post<string>(`${environment.apiUrl}/assets/${this.selectedAsset.id}/bind/${this.selectedUserId}`, {}).subscribe({
       next: (response) => {
         this.loadAllAssets();
         this.loadUnassignedAssets();
@@ -428,7 +429,7 @@ export class AssetManagementComponent implements OnInit {
       return;
     }
     
-    this.http.post<string>(`/api/assets/${asset.id}/unbind`, {}).subscribe({
+    this.http.post<string>(`${environment.apiUrl}/assets/${asset.id}/unbind`, {}).subscribe({
       next: (response) => {
         this.loadAllAssets();
         this.loadUnassignedAssets();
@@ -446,7 +447,7 @@ export class AssetManagementComponent implements OnInit {
       return;
     }
     
-    this.http.delete<string>(`/api/assets/${asset.id}`).subscribe({
+    this.http.delete<string>(`${environment.apiUrl}/assets/${asset.id}`).subscribe({
       next: (response) => {
         this.loadAllAssets();
         this.loadUnassignedAssets();

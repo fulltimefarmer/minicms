@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
+import { environment } from '../../../environments/environment';
 
 interface DictItem {
   id?: number;
@@ -708,8 +709,8 @@ export class DictItemManagementComponent implements OnInit {
   saving = false;
   currentItem: Partial<DictItem> = {};
 
-  private typeApiUrl = 'http://localhost:8080/api/dict-types';
-  private itemApiUrl = 'http://localhost:8080/api/dict-items';
+  private typeApiUrl = `${environment.apiUrl}/dict-types`;
+  private itemApiUrl = `${environment.apiUrl}/dict-items`;
 
   constructor(
     private http: HttpClient, 

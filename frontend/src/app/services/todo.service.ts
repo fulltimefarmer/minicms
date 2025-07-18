@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 export interface Todo {
   id?: number;
@@ -33,7 +34,7 @@ export interface PageResult<T> {
   providedIn: 'root'
 })
 export class TodoService {
-  private baseUrl = '/api/todos';
+  private baseUrl = `${environment.apiUrl}/todos`;
 
   // 临时数据，作为后备方案
   private mockTodos: Todo[] = [

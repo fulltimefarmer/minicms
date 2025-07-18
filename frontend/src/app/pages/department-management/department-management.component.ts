@@ -3,6 +3,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NotificationService } from '../../services/notification.service';
+import { environment } from '../../../environments/environment';
 
 interface Department {
   id: number;
@@ -541,7 +542,7 @@ export class DepartmentManagementComponent implements OnInit {
   isEditing = false;
   currentDepartment: Partial<Department> = {};
   
-  private apiUrl = 'http://localhost:8080/api/departments';
+  private apiUrl = `${environment.apiUrl}/departments`;
 
   constructor(
     private http: HttpClient, 

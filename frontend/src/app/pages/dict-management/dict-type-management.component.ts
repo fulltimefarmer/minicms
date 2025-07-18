@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
+import { environment } from '../../../environments/environment';
 
 interface DictType {
   id?: number;
@@ -517,7 +518,7 @@ export class DictTypeManagementComponent implements OnInit {
   saving = false;
   currentItem: Partial<DictType> = {};
 
-  private apiUrl = 'http://localhost:8080/api/dict-types';
+  private apiUrl = `${environment.apiUrl}/dict-types`;
 
   constructor(private http: HttpClient, private router: Router, private notification: NotificationService) {}
 
