@@ -1,3 +1,5 @@
+// 此文件为HTTP拦截器服务，负责在请求中自动添加认证token，并处理401未授权错误。
+// 实现token自动刷新、认证失败跳转登录等功能，供全局HTTP请求拦截使用。
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';

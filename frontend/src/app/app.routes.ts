@@ -1,3 +1,5 @@
+// 此文件为应用的主路由配置，定义了各页面组件的路由路径及守卫。
+// 包含登录、首页、用户管理、部门管理、资产管理等路由及默认跳转逻辑。
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { PermissionManagementComponent } from './pages/permission-management/permission-management.component';

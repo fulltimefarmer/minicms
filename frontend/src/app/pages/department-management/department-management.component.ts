@@ -1,3 +1,5 @@
+// 此文件为部门管理页面组件，负责部门的树形结构展示、增删改查及表单操作。
+// 包含部门数据结构定义、树形节点展开收起、部门编辑与删除等核心逻辑。
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -533,45 +535,61 @@ interface Department {
   `]
 })
 export class DepartmentManagementComponent implements OnInit {
+  // 部门数据列表，用于存储部门树形结构
   departments: Department[] = [];
+  // 部门树形结构，用于展示部门层级关系
   departmentTree: Department[] = [];
+  // 部门数据列表，用于扁平化处理
   flatDepartments: Department[] = [];
+  // 展开的节点ID集合
   expandedNodes: Set<number> = new Set();
   
+  // 控制模态框的显示与隐藏
   showModal = false;
+  // 标记是否为编辑模式
   isEditing = false;
+  // 当前操作的部门数据
   currentDepartment: Partial<Department> = {};
   
   private apiUrl = `${environment.apiUrl}/departments`;
 
   constructor(
+    // Http客户端，用于与后端API进行通信
     private http: HttpClient, 
+    // 通知服务，用于显示操作结果
     private notification: NotificationService,
+    // 平台ID，用于判断是否在浏览器环境中
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
+      // 初始化时加载部门数据
       this.loadDepartments();
-      this.expandedNodes.add(1); // 默认展开第一个节点
+      // 默认展开第一个节点
+      this.expandedNodes.add(1); 
     }
   }
 
+  // 加载部门数据，从后端获取部门树形结构
   loadDepartments() {
     this.http.get<Department[]>(`${this.apiUrl}/tree`).subscribe({
       next: (data) => {
         this.departmentTree = data;
+        // 扁平化部门数据，方便查找
         this.flattenDepartments();
       },
       error: (error) => console.error('加载部门失败:', error)
     });
   }
 
+  // 扁平化部门数据，将树形结构转换为单层列表
   flattenDepartments() {
     this.flatDepartments = [];
     this.flattenRecursive(this.departmentTree, this.flatDepartments);
   }
 
+  // 递归扁平化部门数据
   flattenRecursive(departments: Department[], result: Department[]) {
     for (const dept of departments) {
       result.push(dept);
@@ -581,10 +599,12 @@ export class DepartmentManagementComponent implements OnInit {
     }
   }
 
+  // 判断节点是否展开
   isExpanded(nodeId: number): boolean {
     return this.expandedNodes.has(nodeId);
   }
 
+  // 切换节点展开/收起状态
   toggleExpand(nodeId: number) {
     if (this.expandedNodes.has(nodeId)) {
       this.expandedNodes.delete(nodeId);
@@ -593,14 +613,17 @@ export class DepartmentManagementComponent implements OnInit {
     }
   }
 
+  // 展开所有节点
   expandAll() {
     this.flatDepartments.forEach(dept => this.expandedNodes.add(dept.id));
   }
 
+  // 收起所有节点
   collapseAll() {
     this.expandedNodes.clear();
   }
 
+  // 打开添加部门模态框
   openAddDepartmentModal() {
     this.currentDepartment = {
       enabled: true,
@@ -611,6 +634,7 @@ export class DepartmentManagementComponent implements OnInit {
     this.showModal = true;
   }
 
+  // 添加子部门
   addChildDepartment(parent: Department, event: Event) {
     event.stopPropagation();
     this.currentDepartment = {
@@ -623,6 +647,7 @@ export class DepartmentManagementComponent implements OnInit {
     this.showModal = true;
   }
 
+  // 编辑部门
   editDepartment(department: Department, event: Event) {
     event.stopPropagation();
     this.currentDepartment = { ...department };
@@ -630,6 +655,7 @@ export class DepartmentManagementComponent implements OnInit {
     this.showModal = true;
   }
 
+  // 删除部门
   deleteDepartment(department: Department, event: Event) {
     event.stopPropagation();
     if (this.notification.confirm(`确定要删除部门"${department.name}"吗？`)) {
@@ -646,6 +672,7 @@ export class DepartmentManagementComponent implements OnInit {
     }
   }
 
+  // 保存部门数据
   saveDepartment() {
     if (this.isEditing) {
       this.http.put<Department>(`${this.apiUrl}/${this.currentDepartment.id}`, this.currentDepartment).subscribe({
@@ -674,11 +701,13 @@ export class DepartmentManagementComponent implements OnInit {
     }
   }
 
+  // 关闭模态框
   closeModal(event?: Event) {
     this.showModal = false;
     this.currentDepartment = {};
   }
 
+  // 获取部门名称的缩进前缀
   getIndentPrefix(level: number): string {
     return '　'.repeat(level - 1);
   }

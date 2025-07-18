@@ -1,38 +1,40 @@
+// 此文件为Angular项目的主配置文件，定义了项目结构、构建、开发、测试等相关配置。
+// 主要用于控制Angular CLI的行为和项目的构建方式。
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json", // 配置文件的JSON Schema路径
+  "version": 1, // 配置文件版本
+  "newProjectRoot": "projects", // 新项目的根目录
   "projects": {
-    "frontend-app": {
-      "projectType": "application",
+    "frontend-app": { // 项目名称
+      "projectType": "application", // 项目类型：应用程序
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss" // 组件默认使用scss样式
         }
       },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
+      "root": "", // 项目根目录
+      "sourceRoot": "src", // 源代码目录
+      "prefix": "app", // 组件选择器前缀
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@angular/build:application", // 构建器类型
           "options": {
-            "browser": "src/main.ts",
-            "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
+            "browser": "src/main.ts", // 浏览器入口文件
+            "tsConfig": "tsconfig.app.json", // TypeScript配置文件
+            "inlineStyleLanguage": "scss", // 内联样式语言
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public" // 静态资源目录
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss" // 全局样式文件
             ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
+            "server": "src/main.server.ts", // SSR入口文件
+            "outputMode": "server", // 输出模式
             "ssr": {
-              "entry": "src/server.ts"
+              "entry": "src/server.ts" // SSR服务端入口
             }
           },
           "configurations": {
@@ -49,12 +51,12 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all" // 生产环境开启输出哈希
             },
             "development": {
-              "optimization": false,
+              "optimization": false, // 关闭优化，便于调试
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true // 开启源码映射，便于调试
             },
             "mock": {
               "optimization": false,
@@ -63,15 +65,15 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.mock.ts"
+                  "with": "src/environments/environment.mock.ts" // mock环境下替换环境配置
                 }
               ]
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "production" // 默认构建环境
         },
         "serve": {
-          "builder": "@angular/build:dev-server",
+          "builder": "@angular/build:dev-server", // 开发服务器
           "configurations": {
             "production": {
               "buildTarget": "frontend-app:build:production"
@@ -81,18 +83,18 @@
             },
             "mock": {
               "buildTarget": "frontend-app:build:mock",
-              "proxyConfig": "proxy.conf.json"
+              "proxyConfig": "proxy.conf.json" // mock环境下的代理配置
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development" // 默认开发环境
         },
         "extract-i18n": {
-          "builder": "@angular/build:extract-i18n"
+          "builder": "@angular/build:extract-i18n" // 国际化提取
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:karma", // 单元测试
           "options": {
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "tsconfig.spec.json", // 测试用TypeScript配置
             "inlineStyleLanguage": "scss",
             "assets": [
               {
@@ -109,6 +111,6 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false // 关闭CLI数据分析
   }
 }

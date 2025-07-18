@@ -1,34 +1,36 @@
+// 此文件为TypeScript的全局配置文件，控制编译选项和Angular编译器行为。
+// 主要用于设置类型检查、编译目标、模块系统等。
 /* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
 /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
-  "compileOnSave": false,
+  "compileOnSave": false, // 保存时是否自动编译
   "compilerOptions": {
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "preserve"
+    "strict": true, // 启用所有严格类型检查选项
+    "noImplicitOverride": true, // 禁止未显式声明override的重写
+    "noPropertyAccessFromIndexSignature": true, // 禁止通过索引签名访问属性
+    "noImplicitReturns": true, // 所有分支必须有返回值
+    "noFallthroughCasesInSwitch": true, // switch语句禁止贯穿
+    "skipLibCheck": true, // 跳过库文件类型检查
+    "isolatedModules": true, // 每个文件单独编译
+    "experimentalDecorators": true, // 启用实验性装饰器
+    "importHelpers": true, // 使用tslib优化辅助函数
+    "target": "ES2022", // 编译目标
+    "module": "preserve" // 保留模块类型
   },
   "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "typeCheckHostBindings": true,
-    "strictTemplates": true
+    "enableI18nLegacyMessageIdFormat": false, // 关闭旧版i18n消息ID格式
+    "strictInjectionParameters": true, // 严格依赖注入参数检查
+    "strictInputAccessModifiers": true, // 严格输入属性访问修饰符
+    "typeCheckHostBindings": true, // 启用宿主绑定类型检查
+    "strictTemplates": true // 启用严格模板类型检查
   },
   "files": [],
   "references": [
     {
-      "path": "./tsconfig.app.json"
+      "path": "./tsconfig.app.json" // 应用主配置
     },
     {
-      "path": "./tsconfig.spec.json"
+      "path": "./tsconfig.spec.json" // 测试配置
     }
   ]
 }
