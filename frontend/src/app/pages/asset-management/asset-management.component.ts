@@ -1,3 +1,5 @@
+// 此文件为资产管理页面组件，负责资产的增删改查、分配、解绑等操作及界面展示。
+// 包含资产、用户数据结构定义，表单处理，资产绑定与解绑等核心逻辑。
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -271,18 +273,18 @@ export interface User {
 })
 export class AssetManagementComponent implements OnInit {
   
-  assets: Asset[] = [];
-  unassignedAssets: Asset[] = [];
-  users: User[] = [];
-  displayAssets: Asset[] = [];
-  activeTab = 'all';
+  assets: Asset[] = []; // 所有资产列表
+  unassignedAssets: Asset[] = []; // 未分配资产列表
+  users: User[] = []; // 用户列表
+  displayAssets: Asset[] = []; // 当前显示的资产列表
+  activeTab = 'all'; // 当前激活的标签页
   
-  showCreateForm = false;
-  showBindModal = false;
-  selectedAsset: Asset | null = null;
-  selectedUserId: number | null = null;
+  showCreateForm = false; // 是否显示新增资产表单
+  showBindModal = false; // 是否显示绑定用户弹窗
+  selectedAsset: Asset | null = null; // 当前选中的资产
+  selectedUserId: number | null = null; // 当前选中的用户ID
   
-  newAsset: Partial<Asset> = {
+  newAsset: Partial<Asset> = { // 新增资产的表单数据
     name: '',
     assetNumber: '',
     type: '',
@@ -361,7 +363,7 @@ export class AssetManagementComponent implements OnInit {
       return;
     }
     
-          this.http.post<Asset>(`${environment.apiUrl}/assets`, this.newAsset).subscribe({
+    this.http.post<Asset>(`${environment.apiUrl}/assets`, this.newAsset).subscribe({
       next: (data) => {
         this.loadAllAssets();
         this.cancelCreate();
@@ -410,7 +412,7 @@ export class AssetManagementComponent implements OnInit {
       return;
     }
     
-          this.http.post<string>(`${environment.apiUrl}/assets/${this.selectedAsset.id}/bind/${this.selectedUserId}`, {}).subscribe({
+    this.http.post<string>(`${environment.apiUrl}/assets/${this.selectedAsset.id}/bind/${this.selectedUserId}`, {}).subscribe({
       next: (response) => {
         this.loadAllAssets();
         this.loadUnassignedAssets();
