@@ -1,3 +1,5 @@
+// 此文件为数据字典项管理页面组件，负责字典项的增删改查、筛选、状态切换等操作及界面展示。
+// 包含字典项、字典类型数据结构定义，表单处理，字典项过滤与统计等核心逻辑。
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

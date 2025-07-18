@@ -1,3 +1,5 @@
+// 此文件为仪表盘页面组件，负责展示用户欢迎信息和个人待办事项列表。
+// 包含用户信息获取、待办事项加载、优先级显示等核心逻辑。
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
@@ -344,22 +346,31 @@ import { filter, Subscription } from 'rxjs';
   `]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+  // 当前登录用户信息
   currentUser: LoginResponse | null = null;
+  // 待办事项列表
   todos: Todo[] = [];
+  // 加载状态
   loading = false;
+  // 错误信息
   error = '';
+  // 订阅列表，用于管理所有订阅
   private subscriptions: Subscription[] = [];
 
   constructor(
+    // 认证服务，用于获取和更新用户信息
     private authService: AuthService,
+    // 待办事项服务，用于获取和更新待办事项
     private todoService: TodoService,
+    // 路由服务，用于导航
     private router: Router
   ) {}
 
   ngOnInit() {
+    // 获取当前登录用户信息
     this.currentUser = this.authService.currentUserValue;
     
-    // 监听用户状态变化
+    // 监听用户状态变化，当用户未登录时跳转到登录页面
     const userSub = this.authService.currentUser.subscribe((user: LoginResponse | null) => {
       this.currentUser = user;
       if (!user) {
@@ -384,10 +395,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
   
   ngOnDestroy() {
-    // 清理订阅，防止内存泄漏
+    // 清理所有订阅，防止内存泄漏
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
+  // 加载待办事项列表
   loadTodos() {
     this.loading = true;
     this.error = '';
@@ -405,6 +417,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
+  // 导航到指定路径
   navigateTo(path: string) {
     this.router.navigate([path]);
   }
