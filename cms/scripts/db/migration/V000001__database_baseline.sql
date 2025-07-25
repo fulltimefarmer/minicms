@@ -1,12 +1,41 @@
--- 数据库架构初始化脚本
--- 创建所有必要的表结构和索引
+SET NAMES utf8mb4;
 
--- 角色表
-CREATE TABLE roles (
+-- ----------------------------
+-- 2.Users
+-- ----------------------------
+DROP TABLE if EXISTS sys_users;
+CREATE TABLE sys_users (
+   id BIGSERIAL PRIMARY KEY,
+   username VARCHAR(50) NOT NULL UNIQUE,
+   password VARCHAR(255) NOT NULL,
+   email VARCHAR(100) NOT NULL UNIQUE,
+   first_name VARCHAR(50),
+   last_name VARCHAR(50),
+   nickname VARCHAR(50),
+   phone VARCHAR(20),
+   avatar VARCHAR(500),
+   status INTEGER DEFAULT 0,
+   last_login_time TIMESTAMP,
+   last_login_ip VARCHAR(45),
+   failed_login_attempts INTEGER DEFAULT 0,
+   locked_until TIMESTAMP,
+   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+   updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
+   created_by VARCHAR(255) DEFAULT 'system',
+   updated_by VARCHAR(255) DEFAULT 'system',
+   deleted BOOLEAN DEFAULT FALSE
+);
+
+-- ----------------------------
+-- 2.Roles
+-- ----------------------------
+DROP TABLE if EXISTS sys_roles;
+CREATE TABLE sys_roles (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     code VARCHAR(50) NOT NULL UNIQUE,
     description VARCHAR(500),
+    sequence INTEGER DEFAULT 0,
     level INTEGER DEFAULT 0,
     enabled BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -16,8 +45,11 @@ CREATE TABLE roles (
     deleted BOOLEAN DEFAULT FALSE
 );
 
--- 权限表
-CREATE TABLE permissions (
+-- ----------------------------
+-- 3.Permissions
+-- ----------------------------
+drop TABLE if exists sys_permissions;
+CREATE TABLE sys_permissions (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     code VARCHAR(100) NOT NULL UNIQUE,
@@ -25,7 +57,7 @@ CREATE TABLE permissions (
     action VARCHAR(50),
     description VARCHAR(500),
     parent_id BIGINT,
-    type VARCHAR(20) DEFAULT 'API', -- MENU, BUTTON, API
+    type VARCHAR(20) DEFAULT 'API',
     path VARCHAR(500),
     sort INTEGER DEFAULT 0,
     enabled BOOLEAN DEFAULT TRUE,
@@ -52,31 +84,7 @@ CREATE TABLE role_permissions (
     UNIQUE(role_id, permission_id)
 );
 
--- 用户表（合并了两个版本的字段）
-CREATE TABLE users (
-    id BIGSERIAL PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    nickname VARCHAR(50),
-    phone VARCHAR(20),
-    avatar VARCHAR(500),
-    enabled BOOLEAN DEFAULT TRUE,
-    account_non_expired BOOLEAN DEFAULT TRUE,
-    account_non_locked BOOLEAN DEFAULT TRUE,
-    credentials_non_expired BOOLEAN DEFAULT TRUE,
-    last_login_time TIMESTAMP,
-    last_login_ip VARCHAR(45),
-    failed_login_attempts INTEGER DEFAULT 0,
-    locked_until TIMESTAMP,
-    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    created_by VARCHAR(255) DEFAULT 'system',
-    updated_by VARCHAR(255) DEFAULT 'system',
-    deleted BOOLEAN DEFAULT FALSE
-);
+
 
 -- 用户角色关联表
 CREATE TABLE user_roles (
