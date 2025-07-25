@@ -16,6 +16,8 @@ import { environment } from '../environments/environment';
   styleUrl: './app.scss'
 })
 export class AppComponent implements OnInit {
+  sidebarCollapsed = false;
+  currentRoute = '';
   // 页面标题映射
   private pageTitles: { [key: string]: string } = {
     '/todos': '待办事项',
